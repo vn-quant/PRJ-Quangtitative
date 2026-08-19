@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 880">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'SF Mono', 'Segoe UI', sans-serif; }
+    .t{fill:#fff;font-size:11px;font-weight:600}
+    .s{fill:#cbd5e1;font-size:8.5px}
+    .g{fill:#94a3b8;font-size:8px}
+    .h{fill:#e2e8f0;font-size:11px;font-weight:700}
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/><rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" fill="#fff" font-size="16" font-weight="700">Luồng KIỂM dữ liệu — ba tầng gate, không phải ba tầng log</text>
+  <text x="30" y="52" class="s">Gate = chặn được. Log = ghi rồi trôi. Ver 1 có đủ log và vẫn hỏng 5 đêm liền vì không có gate nào chặn.</text>
+
+  <!-- tầng 1 -->
+  <rect x="40" y="76" width="1400" height="150" rx="10" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="96" class="h" fill="#fbbf24">TẦNG 1 · LÚC BẮT — trước khi dòng vào DB</text>
+  <text x="1422" y="96" class="g" text-anchor="end">chạy trong job fetch · đơn vị: TỪNG DÒNG</text>
+
+  <rect x="58" y="108" width="330" height="100" rx="5" fill="#0f172a"/><rect x="58" y="108" width="330" height="100" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="223" y="128" class="t" text-anchor="middle">Logic OHLC theo dòng</text>
+  <text x="223" y="146" class="s" text-anchor="middle">low ≤ open, close ≤ high</text>
+  <text x="223" y="161" class="s" text-anchor="middle">bắt: VCI trả high=low=close mà open đúng</text>
+  <text x="223" y="178" class="g" text-anchor="middle">⚠ ca "khoá trần cả phiên o=h=l=c" là HỢP LỆ</text>
+  <text x="223" y="192" class="g" text-anchor="middle">bắt nhầm nó = vứt hàng nghìn dòng đúng</text>
+
+  <rect x="404" y="108" width="330" height="100" rx="5" fill="#0f172a"/><rect x="404" y="108" width="330" height="100" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="569" y="128" class="t" text-anchor="middle">Neo thang giá</text>
+  <text x="569" y="146" class="s" text-anchor="middle">so với close hôm trước</text>
+  <text x="569" y="161" class="s" text-anchor="middle">nới biên nếu hôm nay là ex-date</text>
+  <text x="569" y="178" class="g" text-anchor="middle">bắt lớp lỗi CTG 2013 (close=6 thay vì 5.610)</text>
+  <text x="569" y="192" class="g" text-anchor="middle">và VIX 2014 (sai ~×100)</text>
+
+  <rect x="750" y="108" width="330" height="100" rx="5" fill="#0f172a"/><rect x="750" y="108" width="330" height="100" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="915" y="128" class="t" text-anchor="middle">EMPTY = FAIL</text>
+  <text x="915" y="146" class="s" text-anchor="middle">nguồn trả rỗng mà kỳ vọng CÓ data</text>
+  <text x="915" y="161" class="s" text-anchor="middle">⇒ lỗi, không phải thành công</text>
+  <text x="915" y="178" class="g" text-anchor="middle">bắt lớp lỗi scraper SBV nuốt lỗi</text>
+  <text x="915" y="192" class="g" text-anchor="middle">(policy_rate 0 dòng suốt nhiều tháng)</text>
+
+  <rect x="1096" y="108" width="326" height="100" rx="5" fill="#0f172a"/><rect x="1096" y="108" width="326" height="100" rx="5" fill="rgba(136,19,55,0.3)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1259" y="128" class="t" text-anchor="middle">ĐỎ thì làm gì</text>
+  <text x="1259" y="148" class="s" text-anchor="middle">dòng hỏng → quarantine</text>
+  <text x="1259" y="163" class="s" text-anchor="middle">sang dòng kế, KHÔNG bỏ cả mã</text>
+  <text x="1259" y="182" class="g" text-anchor="middle">ver 1 từng bỏ cả mã vì 1 dòng bẩn</text>
+  <text x="1259" y="196" class="g" text-anchor="middle">⇒ mất dữ liệu tốt của 249 ngày còn lại</text>
+
+  <line x1="740" y1="226" x2="740" y2="252" stroke="#a78bfa" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- tầng 2 -->
+  <rect x="40" y="254" width="1400" height="112" rx="10" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="274" class="h" fill="#a78bfa">TẦNG 2 · LÚC GHI — Postgres cưỡng chế, không phải code</text>
+  <text x="1422" y="274" class="g" text-anchor="end">không job nào lách được</text>
+
+  <rect x="58" y="286" width="440" height="66" rx="5" fill="#0f172a"/><rect x="58" y="286" width="440" height="66" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="278" y="306" class="t" text-anchor="middle">REVOKE UPDATE, DELETE</text>
+  <text x="278" y="323" class="s" text-anchor="middle">+ ALTER DEFAULT PRIVILEGES cho bảng tạo SAU</text>
+  <text x="278" y="341" class="g" text-anchor="middle">chặn vĩnh viễn lớp lỗi "job đêm xoá backfill 5 đêm liền"</text>
+
+  <rect x="514" y="286" width="440" height="66" rx="5" fill="#0f172a"/><rect x="514" y="286" width="440" height="66" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="734" y="306" class="t" text-anchor="middle">CHECK price_unit · price_basis</text>
+  <text x="734" y="323" class="s" text-anchor="middle">VND | kVND    ·    RAW | ADJUSTED | UNKNOWN</text>
+  <text x="734" y="341" class="g" text-anchor="middle">không dòng nào tồn tại mà không khai mình là gì</text>
+
+  <rect x="970" y="286" width="452" height="66" rx="5" fill="#0f172a"/><rect x="970" y="286" width="452" height="66" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="1196" y="306" class="t" text-anchor="middle">UNIQUE (source, symbol, trade_date, payload_hash)</text>
+  <text x="1196" y="323" class="s" text-anchor="middle">dedupe do chỉ mục, không do code ứng dụng</text>
+  <text x="1196" y="341" class="g" text-anchor="middle">nguồn nói y hệt ⇒ 0 dòng mới; nói khác ⇒ 1 quan sát mới</text>
+
+  <line x1="740" y1="366" x2="740" y2="392" stroke="#22d3ee" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- tầng 3 -->
+  <rect x="40" y="394" width="1400" height="200" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="414" class="h" fill="#22d3ee">TẦNG 3 · SAU KHI CHẠY — exit code = CHẤT LƯỢNG DỮ LIỆU, không phải "script chạy xong chưa"</text>
+
+  <rect x="58" y="426" width="330" height="152" rx="5" fill="#0f172a"/><rect x="58" y="426" width="330" height="152" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="223" y="446" class="t" text-anchor="middle">T1 · SQL thuần · 0 lời gọi API</text>
+  <text x="72" y="466" class="s">· freshness: MỌI bảng theo ngày</text>
+  <text x="72" y="481" class="s">· continuity: nhảy &gt;50%/ngày</text>
+  <text x="72" y="496" class="s">· universe: n_expected == n_seen</text>
+  <text x="72" y="511" class="s">· cú nhảy vượt biên sàn mà</text>
+  <text x="82" y="524" class="s">không có corporate action</text>
+  <text x="72" y="543" class="g">Bắt lớp lỗi get_vn100() tụt 100→30 mã</text>
+  <text x="72" y="556" class="g">mà chỉ ghi log.warning</text>
+  <text x="223" y="572" class="g" text-anchor="middle">hằng ngày</text>
+
+  <rect x="404" y="426" width="330" height="152" rx="5" fill="#0f172a"/><rect x="404" y="426" width="330" height="152" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="569" y="446" class="t" text-anchor="middle">T2 · đối chiếu nguồn NGOÀI</text>
+  <text x="418" y="466" class="s">· 1/7 universe xoay vòng mỗi ngày</text>
+  <text x="418" y="481" class="s">· SSI raw × hệ số  vs  DNSE adj</text>
+  <text x="418" y="496" class="s">· lệch &gt;1% ngoài ex-date → FLAG</text>
+  <text x="418" y="515" class="g">Đây là phép kiểm ĐỘC LẬP: hai nguồn</text>
+  <text x="418" y="528" class="g">không thể cùng sai theo một kiểu.</text>
+  <text x="418" y="546" class="g">T1+T2 đo ở ver 1 = 22 giây tổng.</text>
+  <text x="569" y="572" class="g" text-anchor="middle">hằng ngày</text>
+
+  <rect x="750" y="426" width="330" height="152" rx="5" fill="#0f172a"/><rect x="750" y="426" width="330" height="152" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.3"/>
+  <text x="915" y="446" class="t" text-anchor="middle">T3 · quét toàn lịch sử</text>
+  <text x="764" y="466" class="s">check_price_basis --mode full</text>
+  <text x="764" y="483" class="s">Nguyên lý: tỷ số adj/raw là HÀM</text>
+  <text x="764" y="496" class="s">BẬC THANG — chỉ được nhảy tại ex-date</text>
+  <text x="764" y="515" class="g">bậc trùng ex-date → bình thường</text>
+  <text x="764" y="528" class="g">bậc tại chỗ đổi nguồn → trộn raw/adj</text>
+  <text x="764" y="541" class="g">bậc không lý do → gãy cơ sở HOẶC thiếu CA</text>
+  <text x="915" y="572" class="g" text-anchor="middle">hằng tuần</text>
+
+  <rect x="1096" y="426" width="326" height="152" rx="5" fill="#0f172a"/><rect x="1096" y="426" width="326" height="152" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.3"/>
+  <text x="1259" y="446" class="t" text-anchor="middle">Invariant thường trực</text>
+  <text x="1110" y="466" class="s">Mỗi test bảo vệ đúng MỘT lỗi đã</text>
+  <text x="1110" y="479" class="s">xảy ra thật. Hoàn tác bản sửa ⇒ đỏ.</text>
+  <text x="1110" y="500" class="g">Luật: test dựng dòng giả trong</text>
+  <text x="1110" y="513" class="g">TRANSACTION rồi ROLLBACK — không</text>
+  <text x="1110" y="526" class="g">đo trạng thái sẵn có.</text>
+  <text x="1110" y="546" class="g">Đo tồn đọng thì xanh/đỏ phụ thuộc</text>
+  <text x="1110" y="559" class="g">thời điểm chạy so với job đêm (E0005).</text>
+
+  <line x1="740" y1="594" x2="740" y2="620" stroke="#fb7185" stroke-width="2" marker-end="url(#ar)"/>
+
+  <!-- escalation -->
+  <rect x="40" y="622" width="1400" height="140" rx="10" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="642" class="h" fill="#fb7185">LEO THANG — "phát hiện có, escalation không" là khuyết tật D4 của ver 1</text>
+
+  <rect x="58" y="654" width="330" height="92" rx="5" fill="#0f172a"/><rect x="58" y="654" width="330" height="92" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="223" y="674" class="t" text-anchor="middle">1 · ops.STATUS</text>
+  <text x="223" y="692" class="s" text-anchor="middle">mỗi lần chạy ghi 1 dòng verdict</text>
+  <text x="223" y="707" class="s" text-anchor="middle">run đỏ = dòng đỏ ĐẦU file</text>
+  <text x="223" y="726" class="g" text-anchor="middle">assistant đọc file này ĐẦU MỖI PHIÊN</text>
+  <text x="223" y="739" class="g" text-anchor="middle">trước khi trả lời bất cứ gì về data</text>
+
+  <rect x="404" y="654" width="330" height="92" rx="5" fill="#0f172a"/><rect x="404" y="654" width="330" height="92" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="569" y="674" class="t" text-anchor="middle">2 · Counter bền</text>
+  <text x="569" y="692" class="s" text-anchor="middle">một mã/series đỏ N ngày LIÊN TIẾP</text>
+  <text x="569" y="707" class="s" text-anchor="middle">⇒ nâng mức cảnh báo</text>
+  <text x="569" y="726" class="g" text-anchor="middle">chống kiểu "cảnh báo một lần rồi trôi"</text>
+  <text x="569" y="739" class="g" text-anchor="middle">— 161 mã từng chết cập nhật theo cách đó</text>
+
+  <rect x="750" y="654" width="330" height="92" rx="5" fill="#0f172a"/><rect x="750" y="654" width="330" height="92" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="915" y="674" class="t" text-anchor="middle">3 · Dead-man switch</text>
+  <text x="915" y="692" class="s" text-anchor="middle">không có run nào trong &gt; 36h</text>
+  <text x="915" y="707" class="s" text-anchor="middle">⇒ cờ riêng, mức cao nhất</text>
+  <text x="915" y="726" class="g" text-anchor="middle">"KHÔNG CHẠY" nguy hiểm hơn</text>
+  <text x="915" y="739" class="g" text-anchor="middle">"chạy lỗi mà im"</text>
+
+  <rect x="1096" y="654" width="326" height="92" rx="5" fill="#0f172a"/><rect x="1096" y="654" width="326" height="92" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1259" y="674" class="t" text-anchor="middle">4 · Sổ bằng chứng</text>
+  <text x="1259" y="692" class="s" text-anchor="middle">mọi số công bố → record() E####</text>
+  <text x="1259" y="707" class="s" text-anchor="middle">khai nguon · sau_job · phan_chung</text>
+  <text x="1259" y="726" class="g" text-anchor="middle">số cũ hoá ra sai → record(thay_the=)</text>
+  <text x="1259" y="739" class="g" text-anchor="middle">KHÔNG sửa bản ghi cũ</text>
+
+  <rect x="40" y="778" width="1400" height="76" rx="8" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+  <text x="58" y="798" class="h">VÌ SAO BA TẦNG CHỨ KHÔNG PHẢI MỘT</text>
+  <text x="58" y="818" class="s">Mỗi tầng bắt được lớp lỗi mà tầng kia mù: tầng 1 bắt dòng bẩn từ nguồn nhưng không thấy job nào ghi đè job nào · tầng 2 chặn ghi đè nhưng không biết giá đúng hay sai ·</text>
+  <text x="58" y="833" class="s">tầng 3 thấy toàn cảnh nhưng chỉ sau khi dữ liệu đã vào. Ver 1 chỉ có tầng 3 (và ở dạng log, không phải gate) ⇒ mọi lỗi đều "được biết" mà không ai biết.</text>
+  <text x="58" y="849" class="g">Luật chung: một phép kiểm chưa từng ĐỎ thì chưa chứng minh được gì. Trước khi tin bất kỳ test nào, phải làm nó đỏ một lần.</text>
+</svg>

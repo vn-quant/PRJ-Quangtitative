@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 920">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'SF Mono', 'Segoe UI', sans-serif; }
+    .t{fill:#fff;font-size:11px;font-weight:600}
+    .s{fill:#cbd5e1;font-size:8.5px}
+    .g{fill:#94a3b8;font-size:8px}
+    .h{fill:#e2e8f0;font-size:11px;font-weight:700}
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="a" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#64748b"/></marker>
+    <marker id="ag" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#34d399"/></marker>
+    <marker id="ar" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 9 3, 0 6" fill="#fb7185"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/><rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" fill="#fff" font-size="16" font-weight="700">Khi có THAY ĐỔI thì sao — sáu tình huống, sáu đường xử</text>
+  <text x="30" y="52" class="s">Nguyên tắc chung: thay đổi KHÔNG BAO GIỜ sửa dòng cũ. Luôn là một quan sát mới, hoặc một bản ghi mới thay thế bản ghi cũ có ghi lý do.</text>
+
+  <!-- 1 -->
+  <rect x="40" y="76" width="695" height="186" rx="8" fill="none" stroke="#34d399" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="58" y="96" class="h" fill="#34d399">① CÓ CORPORATE ACTION MỚI (chuyện thường ngày)</text>
+  <rect x="58" y="106" width="200" height="52" rx="5" fill="#0f172a"/><rect x="58" y="106" width="200" height="52" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="158" y="126" class="t" text-anchor="middle">VCI events delta</text>
+  <text x="158" y="142" class="s" text-anchor="middle">job hằng ngày nạp về</text>
+  <line x1="258" y1="132" x2="278" y2="132" stroke="#34d399" stroke-width="1.5" marker-end="url(#ag)"/>
+  <rect x="280" y="106" width="200" height="52" rx="5" fill="#0f172a"/><rect x="280" y="106" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="380" y="126" class="t" text-anchor="middle">obs.corp_action</text>
+  <text x="380" y="142" class="s" text-anchor="middle">INSERT một dòng</text>
+  <line x1="480" y1="132" x2="500" y2="132" stroke="#34d399" stroke-width="1.5" marker-end="url(#ag)"/>
+  <rect x="502" y="106" width="215" height="52" rx="5" fill="#0f172a"/><rect x="502" y="106" width="215" height="52" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="609" y="126" class="t" text-anchor="middle">px_adj đổi NGAY</text>
+  <text x="609" y="142" class="s" text-anchor="middle">px_raw KHÔNG đổi</text>
+  <text x="58" y="180" class="s">Không rebuild, không job dẫn xuất, không nguy cơ double-adjust. Hệ số là hàm đọc, sự kiện mới vào bảng là toàn bộ lịch sử điều chỉnh tự cập nhật.</text>
+  <text x="58" y="198" class="g">Ở ver 1 chuyện này phải chạy `build_close_adj.py`; builder chết từ tháng 7 ⇒ close_adj NULL 88,7% mà không ai biết.</text>
+  <text x="58" y="220" class="s" fill="#34d399">Backtest chạy lại sau đó ra số KHÁC — và đó là ĐÚNG: px_adj(as_of=hôm nay) phải phản ánh sự kiện mới.</text>
+  <text x="58" y="238" class="g">Muốn số không đổi thì truyền as_of cố định. Đây là lý do px_adj có tham số as_of thay vì một cột lưu sẵn.</text>
+
+  <!-- 2 -->
+  <rect x="745" y="76" width="695" height="186" rx="8" fill="none" stroke="#fbbf24" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="763" y="96" class="h" fill="#fbbf24">② NGUỒN SỬA LẠI GIÁ QUÁ KHỨ</text>
+  <rect x="763" y="106" width="200" height="52" rx="5" fill="#0f172a"/><rect x="763" y="106" width="200" height="52" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="863" y="126" class="t" text-anchor="middle">payload_hash khác</text>
+  <text x="863" y="142" class="s" text-anchor="middle">nguồn nói điều khác trước</text>
+  <line x1="963" y1="132" x2="983" y2="132" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="985" y="106" width="200" height="52" rx="5" fill="#0f172a"/><rect x="985" y="106" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="1085" y="126" class="t" text-anchor="middle">INSERT dòng MỚI</text>
+  <text x="1085" y="142" class="s" text-anchor="middle">dòng cũ nguyên vẹn</text>
+  <line x1="1185" y1="132" x2="1205" y2="132" stroke="#fbbf24" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="1207" y="106" width="215" height="52" rx="5" fill="#0f172a"/><rect x="1207" y="106" width="215" height="52" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="1314" y="126" class="t" text-anchor="middle">so hai quan sát</text>
+  <text x="1314" y="142" class="s" text-anchor="middle">lệch &gt;1% → FLAG</text>
+  <text x="763" y="180" class="s">Hai quan sát cùng (nguồn, mã, ngày) khác observed_at = bằng chứng nguồn đã viết lại lịch sử. Ở ver 1 việc này ghi đè âm thầm, không để lại dấu.</text>
+  <text x="763" y="198" class="g">Với nguồn adjusted, viết lại là chuyện BÌNH THƯỜNG (mỗi ex-date một lần) ⇒ chính nó thành máy dò corporate action độc lập với VCI events.</text>
+  <text x="763" y="220" class="s" fill="#fbbf24">Với nguồn RAW (SSI) thì viết lại là BẤT THƯỜNG — giá khớp lệnh lịch sử không được đổi.</text>
+  <text x="763" y="238" class="g">⇒ cùng một cơ chế, hai mức cảnh báo khác nhau, phân biệt bằng price_basis của nguồn.</text>
+
+  <!-- 3 -->
+  <rect x="40" y="278" width="695" height="186" rx="8" fill="none" stroke="#fb7185" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="58" y="298" class="h" fill="#fb7185">③ BẬC GÃY GIÁ mà KHÔNG có sự kiện tương ứng</text>
+  <rect x="58" y="308" width="200" height="52" rx="5" fill="#0f172a"/><rect x="58" y="308" width="200" height="52" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="158" y="328" class="t" text-anchor="middle">T3 phát hiện bậc</text>
+  <text x="158" y="344" class="s" text-anchor="middle">không trùng ex-date nào</text>
+  <line x1="258" y1="334" x2="278" y2="334" stroke="#fb7185" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="280" y="308" width="200" height="52" rx="5" fill="#0f172a"/><rect x="280" y="308" width="200" height="52" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="380" y="328" class="t" text-anchor="middle">tra lại VCI events</text>
+  <text x="380" y="344" class="s" text-anchor="middle">có sự kiện bị bỏ sót?</text>
+  <line x1="480" y1="334" x2="500" y2="334" stroke="#fb7185" stroke-width="1.5" marker-end="url(#ar)"/>
+  <rect x="502" y="308" width="215" height="52" rx="5" fill="#0f172a"/><rect x="502" y="308" width="215" height="52" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="609" y="325" class="t" text-anchor="middle">không có ⇒ UNKNOWN</text>
+  <text x="609" y="341" class="s" text-anchor="middle">px_adj bắc qua → NULL + cờ</text>
+  <text x="609" y="354" class="g" text-anchor="middle">KHÔNG trả số sai lặng lẽ</text>
+  <text x="58" y="382" class="s">Đây là đường xử của "70 bậc gãy chưa giải thích được" ở ver 1 — vấn đề tồn tại nhiều tháng vì không có chỗ nào ghi "chưa biết".</text>
+  <text x="58" y="400" class="g">Ba nguyên nhân có thể, phân biệt được: bậc trùng ex-date → bình thường · bậc tại chỗ đổi nguồn → trộn raw/adj · bậc không lý do → thiếu CA hoặc gãy cơ sở thật.</text>
+  <text x="58" y="422" class="s" fill="#fb7185">Luật: thà mất một đoạn dữ liệu còn hơn có một đoạn sai mà trông như đúng.</text>
+  <text x="58" y="440" class="g">Một số NULL kèm cờ thì downstream biết mà tránh. Một số sai thì nó chảy vào backtest và không ai phát hiện.</text>
+
+  <!-- 4 -->
+  <rect x="745" y="278" width="695" height="186" rx="8" fill="none" stroke="#60a5fa" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="763" y="298" class="h" fill="#60a5fa">④ NGUỒN ĐỔI API / ĐỔI TRƯỜNG</text>
+  <rect x="763" y="308" width="200" height="52" rx="5" fill="#0f172a"/><rect x="763" y="308" width="200" height="52" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.2"/>
+  <text x="863" y="325" class="t" text-anchor="middle">EMPTY = FAIL bắt được</text>
+  <text x="863" y="341" class="s" text-anchor="middle">hoặc probe_sources hằng tuần</text>
+  <text x="863" y="354" class="g" text-anchor="middle">phát hiện lệch so với hợp đồng</text>
+  <line x1="963" y1="334" x2="983" y2="334" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="985" y="308" width="200" height="52" rx="5" fill="#0f172a"/><rect x="985" y="308" width="200" height="52" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.2"/>
+  <text x="1085" y="325" class="t" text-anchor="middle">sửa meta.source_contract</text>
+  <text x="1085" y="341" class="s" text-anchor="middle">MỘT dòng dữ liệu</text>
+  <text x="1085" y="354" class="g" text-anchor="middle">không phải hằng số trong code</text>
+  <line x1="1185" y1="334" x2="1205" y2="334" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="1207" y="308" width="215" height="52" rx="5" fill="#0f172a"/><rect x="1207" y="308" width="215" height="52" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.2"/>
+  <text x="1314" y="325" class="t" text-anchor="middle">cập nhật INGEST_SPEC</text>
+  <text x="1314" y="341" class="s" text-anchor="middle">+ evidence_id mới</text>
+  <text x="1314" y="354" class="g" text-anchor="middle">CÙNG commit với code</text>
+  <text x="763" y="382" class="s">Dòng cũ trong obs vẫn giữ price_unit / price_basis CŨ — đúng với thời điểm chúng được ghi. Không hồi tố, không viết lại lịch sử.</text>
+  <text x="763" y="400" class="g">Đây là chỗ observed_at trả công lần nữa: biết dòng nào ghi trước và sau lúc nguồn đổi hành vi.</text>
+  <text x="763" y="422" class="s" fill="#60a5fa">Ver 1: "DNSE là nguồn raw" sai · "SSI chỉ có foreign-flow" sai · "chỉ vnstock có BCTC" sai.</text>
+  <text x="763" y="440" class="g">Ba lần đều vì tin tài liệu/trí nhớ thay vì gọi thử. R6: không tin claim về nguồn từ trí nhớ — verify bằng call thật.</text>
+
+  <!-- 5 -->
+  <rect x="40" y="480" width="695" height="176" rx="8" fill="none" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="58" y="500" class="h" fill="#a78bfa">⑤ ĐỔI SCHEMA (thêm/xoá/đổi tên cột)</text>
+  <text x="58" y="522" class="s">Luật R10 — kiểm HAI NƠI, thiếu một là vỡ:</text>
+  <rect x="58" y="532" width="320" height="58" rx="5" fill="#0f172a"/><rect x="58" y="532" width="320" height="58" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="218" y="551" class="t" text-anchor="middle">(a) pg_depend — object SỐNG trong DB</text>
+  <text x="218" y="568" class="s" text-anchor="middle">view, index, constraint phụ thuộc cột đó</text>
+  <text x="218" y="582" class="g" text-anchor="middle">MÙ với file trên đĩa</text>
+  <rect x="396" y="532" width="321" height="58" rx="5" fill="#0f172a"/><rect x="396" y="532" width="321" height="58" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="556" y="551" class="t" text-anchor="middle">(b) grep toàn repo (.sql + .py)</text>
+  <text x="556" y="568" class="s" text-anchor="middle">writer, schema file, script chưa chạy bao giờ</text>
+  <text x="556" y="582" class="g" text-anchor="middle">bắt cái pg_depend không thấy</text>
+  <text x="58" y="612" class="g">Bài học 2026-07-19: đổi tên `source → raw_source`, pg_depend nói "an toàn", nhưng làm vỡ `200_migrate_from_landing.sql` + `160_views.sql`.</text>
+  <text x="58" y="628" class="g">Lần khác cùng kiểu: đổi `ohlcv_1min.source → raw_source` bỏ sót đúng một dòng `WHERE source=%s` ⇒ mig_intraday chết, intraday +0 dòng trong lần chạy nghiệm thu.</text>
+  <text x="58" y="648" class="s" fill="#a78bfa">Cột trong obs.* gần như không bao giờ phải đổi — thêm trường mới thì vào `extra jsonb`, không cần migration.</text>
+
+  <!-- 6 -->
+  <rect x="745" y="480" width="695" height="176" rx="8" fill="none" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="7,4"/>
+  <text x="763" y="500" class="h">⑥ MỘT SỐ ĐÃ CÔNG BỐ HOÁ RA SAI</text>
+  <text x="763" y="522" class="s">Đây là tình huống ver 1 xử tệ nhất: bản ghi sai của S9 nằm đó như còn hiệu lực suốt nhiều ngày, không chỗ nào ghi "số này đã bị bác".</text>
+  <rect x="763" y="532" width="320" height="58" rx="5" fill="#0f172a"/><rect x="763" y="532" width="320" height="58" rx="5" fill="rgba(136,19,55,0.3)" stroke="#fb7185" stroke-width="1.2"/>
+  <text x="923" y="551" class="t" text-anchor="middle">✕ KHÔNG sửa bản ghi cũ</text>
+  <text x="923" y="568" class="s" text-anchor="middle">sửa đè = mất dấu vết đã từng tin điều gì</text>
+  <text x="923" y="582" class="g" text-anchor="middle">và mất luôn lý do vì sao tin nhầm</text>
+  <rect x="1101" y="532" width="321" height="58" rx="5" fill="#0f172a"/><rect x="1101" y="532" width="321" height="58" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.2"/>
+  <text x="1261" y="551" class="t" text-anchor="middle">✓ record(thay_the="E00xx", ly_do=…)</text>
+  <text x="1261" y="568" class="s" text-anchor="middle">bản cũ gắn ↩, ghi rõ bị bác bởi ai, vì sao</text>
+  <text x="1261" y="582" class="g" text-anchor="middle">additive — không xoá dòng nào</text>
+  <text x="763" y="612" class="g">Đã dùng thật: E0001–E0003 bị E0004 bác (test tự khớp chính nó) · 9 con số của S15 bị đảo ngược, tất cả cùng một cơ chế — đo thứ có sẵn trong kho thay vì hỏi nguồn.</text>
+  <text x="763" y="632" class="s" fill="#34d399">Cùng nguyên tắc với tầng obs: dữ liệu sai không bị xoá, bị gắn nhãn và bỏ qua.</text>
+  <text x="763" y="650" class="g">Xoá là đánh mất bằng chứng — chính việc hiện trường bị job đêm dọn đã làm S9 kết luận sai và đốt trọn một phiên.</text>
+
+  <!-- tổng -->
+  <rect x="40" y="672" width="1400" height="106" rx="8" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+  <text x="58" y="692" class="h">MỘT LUẬT CHUNG CHO CẢ SÁU</text>
+  <text x="58" y="714" class="s" fill="#e2e8f0">Thay đổi không bao giờ sửa cái cũ. Nó là một BẢN GHI MỚI đặt cạnh bản cũ, và cái cũ được gắn nhãn — không bị xoá.</text>
+  <text x="58" y="736" class="g">Áp cho dữ liệu (quan sát mới trong obs) · cho hệ số điều chỉnh (px_adj tính lại, px_raw bất động) · cho hợp đồng nguồn (dòng mới + evidence_id) · cho số đã công bố (record thay_the).</text>
+  <text x="58" y="754" class="g">Nhờ vậy mọi câu hỏi dạng "tại thời điểm T, hệ thống tin gì?" đều trả lời được — mà đó chính là câu S9/S14 không trả lời được nên phải đo lại từ đầu.</text>
+  <text x="58" y="772" class="g">Cái giá: dung lượng lớn hơn và truy vấn phải chọn bản mới nhất. Đổi lại: không bao giờ mất bằng chứng, và không job nào huỷ được việc của job khác.</text>
+
+  <!-- legend -->
+  <rect x="40" y="792" width="1400" height="44" rx="8" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+  <text x="58" y="810" class="h" font-size="9.5">CHÚ GIẢI</text>
+  <rect x="130" y="802" width="13" height="9" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399"/><text x="149" y="810" class="g" fill="#cbd5e1">tự xử, không cần người</text>
+  <rect x="300" y="802" width="13" height="9" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24"/><text x="319" y="810" class="g" fill="#cbd5e1">cần sửa khai báo</text>
+  <rect x="450" y="802" width="13" height="9" rx="2" fill="rgba(136,19,55,0.4)" stroke="#fb7185"/><text x="469" y="810" class="g" fill="#cbd5e1">cần người điều tra</text>
+  <rect x="605" y="802" width="13" height="9" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa"/><text x="624" y="810" class="g" fill="#cbd5e1">chạm schema — kiểm hai nơi</text>
+  <rect x="805" y="802" width="13" height="9" rx="2" fill="rgba(59,130,246,0.3)" stroke="#60a5fa"/><text x="824" y="810" class="g" fill="#cbd5e1">cập nhật tài liệu cùng commit</text>
+  <text x="58" y="828" class="g">Sơ đồ liên quan: `build-steps-v1` các bước xây · `daily-run-v1` luồng chạy hằng ngày · `daily-check-v1` ba tầng gate · `db-redesign-v1` kiến trúc tầng.</text>
+</svg>

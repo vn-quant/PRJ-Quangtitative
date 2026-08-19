@@ -1,0 +1,330 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1090">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'SF Mono', 'Segoe UI', sans-serif; }
+    .t   { fill:#ffffff; font-size:11px; font-weight:600; }
+    .s   { fill:#94a3b8; font-size:8.5px; font-weight:400; }
+    .lay { font-size:11px; font-weight:700; }
+    .note{ fill:#cbd5e1; font-size:9px; font-weight:500; }
+    .tiny{ fill:#64748b; font-size:8px; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-vio" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-em" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-am" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 9 3, 0 6" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- ═══ TITLE ═══ -->
+  <text x="30" y="34" fill="#ffffff" font-size="16" font-weight="700">Thiết kế DB — PRJ quant</text>
+  <text x="30" y="52" class="note">Lưu QUAN SÁT, không lưu GIÁ · 4 tầng · 2026-07-30 (S16) · v1 — THIẾT KẾ, chưa thi công</text>
+
+  <!-- ═══ ARROWS: nguồn → L0 ═══ -->
+  <line x1="122" y1="158" x2="122" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+  <line x1="311" y1="158" x2="311" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+  <line x1="500" y1="158" x2="500" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+  <line x1="689" y1="158" x2="689" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+  <line x1="878" y1="158" x2="878" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+  <line x1="1067" y1="158" x2="1067" y2="242" stroke="#a78bfa" stroke-width="1.4" marker-end="url(#arrow-vio)"/>
+
+  <!-- ═══ ARROWS: L0 → L1 → L2 → L3 ═══ -->
+  <line x1="595" y1="432" x2="595" y2="486" stroke="#34d399" stroke-width="2" marker-end="url(#arrow-em)"/>
+  <line x1="595" y1="640" x2="595" y2="694" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrow-am)"/>
+  <line x1="595" y1="822" x2="595" y2="876" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrow-cyan)"/>
+
+  <!-- ═══ NGUỒN ═══ -->
+  <rect x="25" y="78" width="1120" height="94" rx="12" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,4"/>
+  <text x="38" y="94" fill="#94a3b8" class="lay">NGUỒN NGOÀI</text>
+  <text x="1132" y="94" fill="#64748b" class="tiny" text-anchor="end">gọi thẳng API — KHÔNG qua vnstock</text>
+
+  <rect x="40" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="40" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="122" y="122" class="t" text-anchor="middle">SSI FastConnect</text>
+  <text x="122" y="136" class="s" text-anchor="middle">RAW · 31 trường</text>
+  <text x="122" y="149" class="s" text-anchor="middle">2020-02-26 →</text>
+
+  <rect x="229" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="229" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="311" y="122" class="t" text-anchor="middle">DNSE entrade</text>
+  <text x="311" y="136" class="s" text-anchor="middle">ADJUSTED · nghìn đ</text>
+  <text x="311" y="149" class="s" text-anchor="middle">2012-03-20 →</text>
+
+  <rect x="418" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="418" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="500" y="122" class="t" text-anchor="middle">VCI IQ</text>
+  <text x="500" y="136" class="s" text-anchor="middle">sự kiện · BCTC</text>
+  <text x="500" y="149" class="s" text-anchor="middle">2010 →</text>
+
+  <rect x="607" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="607" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="689" y="122" class="t" text-anchor="middle">SBV</text>
+  <text x="689" y="136" class="s" text-anchor="middle">lãi suất — 2 bảng</text>
+  <text x="689" y="149" class="s" text-anchor="middle">ảnh hiện tại</text>
+
+  <rect x="796" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="796" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="878" y="122" class="t" text-anchor="middle">trolyluat</text>
+  <text x="878" y="136" class="s" text-anchor="middle">liên NH lịch sử</text>
+  <text x="878" y="149" class="s" text-anchor="middle">2011-01-04 →</text>
+
+  <rect x="985" y="102" width="165" height="56" rx="6" fill="#0f172a"/>
+  <rect x="985" y="102" width="165" height="56" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="1067" y="122" class="t" text-anchor="middle">Yahoo</text>
+  <text x="1067" y="136" class="s" text-anchor="middle">hàng hoá</text>
+  <text x="1067" y="149" class="s" text-anchor="middle">15 mã futures</text>
+
+  <text x="585" y="196" class="note" text-anchor="middle" fill="#fb7185">✕ KHÔNG fallback xuyên ngữ nghĩa — mỗi nguồn một đường riêng, nguồn thứ hai là PHÉP KIỂM chứ không phải hàng thay thế</text>
+  <text x="585" y="212" class="tiny" text-anchor="middle">SSI raw và VCI/DNSE adjusted không thay nhau được ⇒ round-robin sai từ gốc</text>
+
+  <!-- ═══ L0 — obs ═══ -->
+  <rect x="25" y="228" width="1120" height="208" rx="12" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="10,4"/>
+  <text x="38" y="248" fill="#a78bfa" class="lay">L0 · obs.* — NHẬT KÝ QUAN SÁT</text>
+  <text x="1132" y="248" fill="#fb7185" class="note" text-anchor="end">CHỈ INSERT · REVOKE UPDATE, DELETE</text>
+  <text x="38" y="263" class="tiny">bất biến · append-only · dedupe theo payload_hash · khoá gồm observed_at</text>
+
+  <rect x="45" y="274" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="45" y="274" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="145" y="294" class="t" text-anchor="middle">price_daily</text>
+  <text x="145" y="309" class="s" text-anchor="middle">nguồn×mã×ngày×lần qs</text>
+  <text x="145" y="321" class="tiny" text-anchor="middle">+ extra jsonb (24 trường SSI)</text>
+
+  <rect x="272" y="274" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="272" y="274" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="372" y="294" class="t" text-anchor="middle">price_intraday</text>
+  <text x="372" y="309" class="s" text-anchor="middle">nguồn×mã×phút×lần qs</text>
+  <text x="372" y="321" class="tiny" text-anchor="middle">chỉ append hôm nay</text>
+
+  <rect x="499" y="274" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="499" y="274" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="599" y="294" class="t" text-anchor="middle">corp_action</text>
+  <text x="599" y="309" class="s" text-anchor="middle">nguồn×mã×ex_date×loại</text>
+  <text x="599" y="321" class="tiny" text-anchor="middle">VCI events, từ 2010</text>
+
+  <rect x="726" y="274" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="726" y="274" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="826" y="294" class="t" text-anchor="middle">index_daily</text>
+  <text x="826" y="309" class="s" text-anchor="middle">nguồn×chỉ số×ngày</text>
+  <text x="826" y="321" class="tiny" text-anchor="middle">+ độ rộng thị trường</text>
+
+  <rect x="953" y="274" width="192" height="52" rx="5" fill="#0f172a"/>
+  <rect x="953" y="274" width="192" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="1049" y="294" class="t" text-anchor="middle">foreign_flow</text>
+  <text x="1049" y="309" class="s" text-anchor="middle">nguồn×mã×ngày</text>
+  <text x="1049" y="321" class="tiny" text-anchor="middle">cùng lời gọi với giá</text>
+
+  <rect x="45" y="342" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="45" y="342" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="145" y="362" class="t" text-anchor="middle">security_ref</text>
+  <text x="145" y="377" class="s" text-anchor="middle">nguồn×mã×lần qs</text>
+  <text x="145" y="389" class="tiny" text-anchor="middle">KLNY · bước giá · ngày NY</text>
+
+  <rect x="272" y="342" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="272" y="342" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="372" y="362" class="t" text-anchor="middle">financial</text>
+  <text x="372" y="377" class="s" text-anchor="middle">nguồn×mã×kỳ×chỉ tiêu</text>
+  <text x="372" y="389" class="tiny" text-anchor="middle">345 chỉ tiêu BCTC</text>
+
+  <rect x="499" y="342" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="499" y="342" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="599" y="362" class="t" text-anchor="middle">ownership</text>
+  <text x="599" y="377" class="s" text-anchor="middle">nguồn×mã×chủ SH</text>
+  <text x="599" y="389" class="tiny" text-anchor="middle">cổ đông + GD nội bộ</text>
+
+  <rect x="726" y="342" width="200" height="52" rx="5" fill="#0f172a"/>
+  <rect x="726" y="342" width="200" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="826" y="362" class="t" text-anchor="middle">macro</text>
+  <text x="826" y="377" class="s" text-anchor="middle">nguồn×chuỗi×ngày</text>
+  <text x="826" y="389" class="tiny" text-anchor="middle">lãi suất · tỷ giá · hàng hoá</text>
+
+  <rect x="953" y="342" width="192" height="52" rx="5" fill="#0f172a"/>
+  <rect x="953" y="342" width="192" height="52" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="1049" y="362" class="t" text-anchor="middle">document</text>
+  <text x="1049" y="377" class="s" text-anchor="middle">nguồn×tài liệu</text>
+  <text x="1049" y="389" class="tiny" text-anchor="middle">báo cáo CTCK · tin</text>
+
+  <rect x="45" y="404" width="1100" height="24" rx="4" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="595" y="420" class="note" text-anchor="middle">mỗi dòng khai: price_unit (VND | kVND) · price_basis (RAW | ADJUSTED | UNKNOWN) · observed_at · run_id — KHÔNG có cột "backfilled"</text>
+
+  <text x="620" y="470" class="note" fill="#34d399">hàm phân giải XÁC ĐỊNH — nằm trong code, review được, đảo lại được</text>
+
+  <!-- ═══ L1 — market ═══ -->
+  <rect x="25" y="486" width="1120" height="154" rx="12" fill="none" stroke="#34d399" stroke-width="1.5" stroke-dasharray="10,4"/>
+  <text x="38" y="506" fill="#34d399" class="lay">L1 · market.* — CHUẨN HOÁ (VIEW)</text>
+  <text x="1132" y="506" fill="#34d399" class="note" text-anchor="end">KHÔNG AI GHI — sửa = sửa hàm, có commit</text>
+
+  <rect x="45" y="518" width="250" height="58" rx="5" fill="#0f172a"/>
+  <rect x="45" y="518" width="250" height="58" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="170" y="538" class="t" text-anchor="middle">px_raw</text>
+  <text x="170" y="553" class="s" text-anchor="middle">2020-02-26+ : SSI quan sát</text>
+  <text x="170" y="566" class="s" text-anchor="middle">2015 → 2020-02 : DỰNG LẠI</text>
+
+  <rect x="315" y="518" width="250" height="58" rx="5" fill="#0f172a"/>
+  <rect x="315" y="518" width="250" height="58" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="440" y="538" class="t" text-anchor="middle">ca — hệ số điều chỉnh</text>
+  <text x="440" y="553" class="s" text-anchor="middle">factor + factor_method</text>
+  <text x="440" y="566" class="s" text-anchor="middle">DECLARED|IMPLIED|UNKNOWN</text>
+
+  <rect x="585" y="518" width="250" height="58" rx="5" fill="#0f172a"/>
+  <rect x="585" y="518" width="250" height="58" rx="5" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.8"/>
+  <text x="710" y="538" class="t" text-anchor="middle">px_adj(as_of)</text>
+  <text x="710" y="553" class="s" text-anchor="middle">px_raw × Π factor(ex_date≤as_of)</text>
+  <text x="710" y="566" class="s" text-anchor="middle">truyền as_of ⇒ backtest PIT</text>
+
+  <rect x="855" y="518" width="290" height="58" rx="5" fill="#0f172a"/>
+  <rect x="855" y="518" width="290" height="58" rx="5" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.4"/>
+  <text x="1000" y="538" class="t" text-anchor="middle">index_daily · breadth</text>
+  <text x="1000" y="553" class="s" text-anchor="middle">foreign_flow · px_intraday</text>
+  <text x="1000" y="566" class="s" text-anchor="middle">chuẩn hoá đơn vị lúc ĐỌC</text>
+
+  <rect x="45" y="588" width="1100" height="38" rx="4" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="595" y="604" class="note" text-anchor="middle">UNKNOWN phải LAN TRUYỀN — px_adj bắc qua sự kiện chưa biết hệ số trả NULL + cờ, KHÔNG BAO GIỜ trả số sai lặng lẽ</text>
+  <text x="595" y="619" class="tiny" text-anchor="middle">dòng price_basis='UNKNOWN' (LEGACY_BRONZE, 663k dòng cũ) không bao giờ được chọn — bảo tồn, truy nguyên được, và trơ</text>
+
+  <!-- ═══ L2 — meta ═══ -->
+  <rect x="25" y="694" width="1120" height="128" rx="12" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="10,4"/>
+  <text x="38" y="714" fill="#fbbf24" class="lay">L2 · meta.* — KHAI BÁO</text>
+  <text x="1132" y="714" fill="#fbbf24" class="note" text-anchor="end">NGƯỜI viết, có lý do + ngày</text>
+
+  <rect x="40" y="726" width="165" height="50" rx="5" fill="#0f172a"/>
+  <rect x="40" y="726" width="165" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="122" y="746" class="t" text-anchor="middle">universe</text>
+  <text x="122" y="761" class="s" text-anchor="middle">204 mã</text>
+
+  <rect x="229" y="726" width="165" height="50" rx="5" fill="#0f172a"/>
+  <rect x="229" y="726" width="165" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="311" y="746" class="t" text-anchor="middle">ecosystem</text>
+  <text x="311" y="761" class="s" text-anchor="middle">15 nhóm sở hữu</text>
+
+  <rect x="418" y="726" width="165" height="50" rx="5" fill="#0f172a"/>
+  <rect x="418" y="726" width="165" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="500" y="746" class="t" text-anchor="middle">securities</text>
+  <text x="500" y="761" class="s" text-anchor="middle">master, hub FK</text>
+
+  <rect x="607" y="726" width="165" height="50" rx="5" fill="#0f172a"/>
+  <rect x="607" y="726" width="165" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="689" y="746" class="t" text-anchor="middle">trading_calendar</text>
+  <text x="689" y="761" class="s" text-anchor="middle">VIEW ← index_daily</text>
+
+  <rect x="796" y="726" width="165" height="50" rx="5" fill="#0f172a"/>
+  <rect x="796" y="726" width="165" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="878" y="746" class="t" text-anchor="middle">data_catalog</text>
+  <text x="878" y="761" class="s" text-anchor="middle">phải phủ 100%</text>
+
+  <rect x="985" y="726" width="160" height="50" rx="5" fill="#0f172a"/>
+  <rect x="985" y="726" width="160" height="50" rx="5" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.3"/>
+  <text x="1065" y="746" class="t" text-anchor="middle">source_contract</text>
+  <text x="1065" y="761" class="s" text-anchor="middle">khai đơn vị / cơ sở</text>
+
+  <text x="595" y="800" class="tiny" text-anchor="middle">universe là KHAI BÁO, không phải trầm tích · calendar là VIEW dẫn xuất, không phải bảng phải nhớ nạp</text>
+
+  <!-- ═══ L3 — features + consumers ═══ -->
+  <rect x="25" y="876" width="1120" height="112" rx="12" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="10,4"/>
+  <text x="38" y="896" fill="#22d3ee" class="lay">L3 · features.* → NGƯỜI DÙNG CUỐI</text>
+
+  <rect x="45" y="908" width="250" height="54" rx="5" fill="#0f172a"/>
+  <rect x="45" y="908" width="250" height="54" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="170" y="929" class="t" text-anchor="middle">Model ML swing</text>
+  <text x="170" y="945" class="s" text-anchor="middle">Triple Barrier · purged CV</text>
+
+  <rect x="315" y="908" width="250" height="54" rx="5" fill="#0f172a"/>
+  <rect x="315" y="908" width="250" height="54" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="440" y="929" class="t" text-anchor="middle">Universe VN100-PIT</text>
+  <text x="440" y="945" class="s" text-anchor="middle">ADTV trượt 63 ngày</text>
+
+  <rect x="585" y="908" width="250" height="54" rx="5" fill="#0f172a"/>
+  <rect x="585" y="908" width="250" height="54" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="710" y="929" class="t" text-anchor="middle">Phân tích ngày</text>
+  <text x="710" y="945" class="s" text-anchor="middle">run_analysis → Obsidian</text>
+
+  <rect x="855" y="908" width="290" height="54" rx="5" fill="#0f172a"/>
+  <rect x="855" y="908" width="290" height="54" rx="5" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.4"/>
+  <text x="1000" y="929" class="t" text-anchor="middle">Council · Web viz</text>
+  <text x="1000" y="945" class="s" text-anchor="middle">agent cơ bản · FastAPI + React</text>
+
+  <!-- ═══ ops — cắt ngang ═══ -->
+  <rect x="1175" y="228" width="200" height="760" rx="12" fill="none" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="10,4"/>
+  <text x="1188" y="248" fill="#fb7185" class="lay">ops.*</text>
+  <text x="1188" y="263" class="tiny">cắt ngang mọi tầng</text>
+
+  <rect x="1190" y="278" width="170" height="60" rx="5" fill="#0f172a"/>
+  <rect x="1190" y="278" width="170" height="60" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1275" y="300" class="t" text-anchor="middle">run_ledger</text>
+  <text x="1275" y="315" class="s" text-anchor="middle">mọi job ghi 1 dòng</text>
+  <text x="1275" y="328" class="s" text-anchor="middle">run_id ← obs.*</text>
+
+  <rect x="1190" y="358" width="170" height="60" rx="5" fill="#0f172a"/>
+  <rect x="1190" y="358" width="170" height="60" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1275" y="380" class="t" text-anchor="middle">check_result</text>
+  <text x="1275" y="395" class="s" text-anchor="middle">freshness · continuity</text>
+  <text x="1275" y="408" class="s" text-anchor="middle">raw ↔ adj cross-check</text>
+
+  <rect x="1190" y="438" width="170" height="60" rx="5" fill="#0f172a"/>
+  <rect x="1190" y="438" width="170" height="60" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1275" y="460" class="t" text-anchor="middle">STATUS</text>
+  <text x="1275" y="475" class="s" text-anchor="middle">1 dòng verdict/lần chạy</text>
+  <text x="1275" y="488" class="s" text-anchor="middle">dead-man &gt; 36h</text>
+
+  <rect x="1190" y="518" width="170" height="60" rx="5" fill="#0f172a"/>
+  <rect x="1190" y="518" width="170" height="60" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1275" y="540" class="t" text-anchor="middle">evidence</text>
+  <text x="1275" y="555" class="s" text-anchor="middle">E#### — mỗi số đo</text>
+  <text x="1275" y="568" class="s" text-anchor="middle">tra lại được</text>
+
+  <line x1="1175" y1="330" x2="1150" y2="330" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-rose)"/>
+  <line x1="1175" y1="547" x2="1150" y2="547" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-rose)"/>
+  <line x1="1175" y1="750" x2="1150" y2="750" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-rose)"/>
+  <line x1="1175" y1="935" x2="1150" y2="935" stroke="#fb7185" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrow-rose)"/>
+
+  <rect x="1190" y="600" width="170" height="130" rx="5" fill="#0f172a"/>
+  <rect x="1190" y="600" width="170" height="130" rx="5" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="1275" y="620" fill="#e2e8f0" font-size="9.5" font-weight="700" text-anchor="middle">BA LUẬT ÉP BẰNG MÁY</text>
+  <text x="1200" y="640" class="tiny" fill="#cbd5e1">L1 · REVOKE trên obs</text>
+  <text x="1200" y="652" class="tiny">Postgres từ chối, không</text>
+  <text x="1200" y="663" class="tiny">phải reviewer từ chối</text>
+  <text x="1200" y="681" class="tiny" fill="#cbd5e1">L2 · CHECK đơn vị + cơ sở</text>
+  <text x="1200" y="693" class="tiny">lưu nguyên bản, đổi lúc đọc</text>
+  <text x="1200" y="711" class="tiny" fill="#cbd5e1">L3 · không cột nào là sẹo</text>
+  <text x="1200" y="723" class="tiny">raw_origin tính lại mỗi lần</text>
+
+  <!-- ═══ LEGEND ═══ -->
+  <rect x="25" y="1006" width="1350" height="62" rx="8" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+  <text x="40" y="1024" fill="#e2e8f0" font-size="9.5" font-weight="700">CHÚ GIẢI</text>
+
+  <rect x="112" y="1016" width="14" height="10" rx="2" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1"/>
+  <text x="132" y="1025" class="tiny" fill="#cbd5e1">nguồn ngoài</text>
+  <rect x="225" y="1016" width="14" height="10" rx="2" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="245" y="1025" class="tiny" fill="#cbd5e1">L0 obs — chỉ INSERT</text>
+  <rect x="393" y="1016" width="14" height="10" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1"/>
+  <text x="413" y="1025" class="tiny" fill="#cbd5e1">L1 market — VIEW</text>
+  <rect x="548" y="1016" width="14" height="10" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1"/>
+  <text x="568" y="1025" class="tiny" fill="#cbd5e1">L2 meta — người khai</text>
+  <rect x="730" y="1016" width="14" height="10" rx="2" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="750" y="1025" class="tiny" fill="#cbd5e1">L3 người dùng cuối</text>
+  <rect x="893" y="1016" width="14" height="10" rx="2" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1"/>
+  <text x="913" y="1025" class="tiny" fill="#cbd5e1">ops — vận hành</text>
+  <rect x="1040" y="1016" width="14" height="10" rx="2" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1"/>
+  <text x="1060" y="1025" class="tiny" fill="#cbd5e1">điểm mọi feature/backtest đọc vào</text>
+
+  <text x="40" y="1046" class="tiny" fill="#94a3b8">Vì sao đảo chiều bất biến: bảng khả biến + nhiều writer khác ngữ nghĩa ⇒ "job đêm thắng" là hành vi ĐƯỢC ĐẢM BẢO, không phải sự cố. Mọi bản vá thọ tối đa một đêm.</text>
+  <text x="40" y="1060" class="tiny" fill="#94a3b8">Quan sát bất biến ⇒ không job nào huỷ được gì · observed_at giải được "adjusted một phần" · obs CHÍNH LÀ landing ⇒ bỏ migration 200 là bỏ luôn cơ chế xoá · khe gãy 2021 không tồn tại về cấu trúc.</text>
+</svg>

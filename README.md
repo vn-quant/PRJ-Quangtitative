@@ -15,8 +15,22 @@ PRJ-Quangtitative/
 ├── TAXONOMY.md            (chưa có)  giá trị hợp lệ: tags, verdict    [ghi đè]
 ├── chat-instructions.md   (chưa có)  rule đang dán ở claude.ai        [ghi đè]
 │
-├── handoffs/              (rỗng)     1 file/phiên  YYYY-MM-DD-slug.md [append]
+├── handoffs/                         1 file/phiên  YYYY-MM-DD-slug.md [append]
 ├── decisions/             (rỗng)     1 file/quyết định  D####-slug.md [append]
+│
+├── data-design/           tài liệu kỹ thuật DB + nguồn dữ liệu        [ghi đè]
+│   ├── README.md          bảng tra cứu của thư mục
+│   ├── DB_DESIGN.md       thiết kế bảng: obs / market / meta / ops
+│   ├── DATA_REQUIREMENTS.md   dữ liệu nào cần lấy — 56 mục, 8 nhóm
+│   ├── DATA_SOURCE_MAP.md     map từng mục sang nguồn
+│   ├── INGEST_SPEC.md     lấy cụ thể thế nào — D1…D17, §D12 = tải BCTC
+│   ├── OHLCV.md           giá ngày: raw/adj, công thức, 18 phép kiểm
+│   ├── BANG_TRA_MA_KIEM.md    mã C-01…C-18 là gì
+│   ├── SOURCE_SSI.md · SOURCE_DNSE.md · SOURCE_VCI.md · SOURCE_VNSTOCK.md
+│   └── diagram/*.svg      sơ đồ (chỉ SVG — PNG @2x để ở máy)
+│
+├── requirements/
+│   └── URD.md             yêu cầu gốc — mâu thuẫn thì URD đúng
 │
 └── reviews/
     ├── INDEX.md           danh sách paper: id · tên · tags · verdict · năm
@@ -44,10 +58,21 @@ Trộn hai loại thì file vừa kể lịch sử vừa nói hiện trạng, sa
 
 ## Không chứa
 
-Dữ liệu, API key, `.env`, PDF, code chạy được — tất cả ở thư mục local.
+**Code và dữ liệu** — hai thứ đó ở máy local và ở repo project
+`vn-quant/prj-quantitative-investment`. Cùng với chúng: API key, `.env`, PDF, file `.parquet`,
+và ảnh PNG `@2x` của sơ đồ (chỉ SVG lên đây — SVG là văn bản, đọc được; PNG chỉ làm nặng repo).
 
-PDF ngoài git vì git giữ mọi phiên bản vĩnh viễn và không nén được file nhị phân; và
-đường đọc của Claude chat chỉ lấy được nội dung văn bản, PDF nằm đây cũng không đọc được.
+Lý do chia như vậy: repo này tồn tại để **đọc được từ nơi không mở được repo project** —
+Claude chat chỉ lấy được nội dung dạng văn bản, và git thì giữ mọi phiên bản vĩnh viễn nên
+không hợp với file nhị phân.
+
+## Bản nào là bản gốc
+
+`data-design/` và `requirements/` là **bản làm việc** — sửa ở đây. Repo project giữ bản
+archive cùng code và dữ liệu.
+
+⚠️ Hiện hai repo **đang có cùng nội dung**. Chỉ nên còn một nơi được sửa, nếu không hai bên
+sẽ lệch — đúng cái bệnh mà cấu trúc này sinh ra để tránh.
 
 ## Thứ tự đọc — Claude chat
 

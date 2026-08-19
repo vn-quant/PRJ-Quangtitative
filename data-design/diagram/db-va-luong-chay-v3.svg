@@ -1,0 +1,328 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1310" viewBox="0 0 2100 1310">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Consolas', monospace; }
+  .t   { fill:#ffffff; font-size:11px; font-weight:600; }
+  .t12 { fill:#ffffff; font-size:12px; font-weight:700; }
+  .s   { fill:#94a3b8; font-size:9px; }
+  .s8  { fill:#94a3b8; font-size:8px; }
+  .n   { fill:#cbd5e1; font-size:8.5px; }
+  .warn{ fill:#fb7185; font-size:8.5px; }
+  .ok  { fill:#34d399; font-size:8.5px; }
+  .amb { fill:#fbbf24; font-size:8.5px; }
+  .cy  { fill:#22d3ee; font-size:9px; font-weight:600; }
+  .new { fill:#c4b5fd; font-size:8.5px; font-weight:600; }
+</style>
+<defs>
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+  </pattern>
+  <marker id="ar" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/></marker>
+  <marker id="av" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/></marker>
+  <marker id="ae" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+</defs>
+
+<rect width="100%" height="100%" fill="#0f172a"/>
+<rect width="100%" height="100%" fill="url(#grid)"/>
+
+<text x="40" y="42" fill="#ffffff" font-size="17" font-weight="700">Tầng dữ liệu ver 2 — kiến trúc và luồng chạy, sau đợt sửa 2026-08-12</text>
+<text x="40" y="63" class="s">quant_v2 · 197 mã đang cập nhật · giá 2000-07-28 → 2026-08-12 · 621.941 dòng ở tầng đọc</text>
+<text x="40" y="79" class="new">Tím = thêm hoặc đổi ngày 12/08. Bảy thay đổi, mỗi cái sửa một lỗi ĐO ĐƯỢC — không cái nào là dọn dẹp cho đẹp.</text>
+
+<!-- ══════════ NGUỒN ══════════ -->
+<rect x="50" y="100" width="1245" height="215" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="12,4"/>
+<text x="64" y="118" class="cy">① NGUỒN — 3 nhà cung cấp cho GIÁ (vnstock bị cấm dùng cho giá; chỉ được dùng cho BCTC, và BCTC chưa xây)</text>
+
+<rect x="70" y="130" width="228" height="170" rx="6" fill="#0f172a"/>
+<rect x="70" y="130" width="228" height="170" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="2"/>
+<text x="184" y="150" class="t" text-anchor="middle">SSI · iBoard</text>
+<text x="184" y="164" class="s8" text-anchor="middle">statistics/charts/history</text>
+<text x="80" y="184" class="n">SSI_IBOARD · ADJUSTED · kVND</text>
+<text x="80" y="197" class="n">666.957 dòng · từ 2000-07-28</text>
+<rect x="80" y="205" width="112" height="15" rx="3" fill="rgba(59,130,246,0.5)" stroke="#60a5fa" stroke-width="1"/>
+<text x="136" y="216" fill="#dbeafe" font-size="8" font-weight="700" text-anchor="middle">VAI TRÒ: CHÍNH</text>
+<text x="80" y="234" class="s8">tầng đọc dùng cho 191/197 mã</text>
+<text x="80" y="250" class="ok">trễ 0 ngày</text>
+<text x="80" y="270" class="s8">không token · không phân trang</text>
+<text x="80" y="283" class="s8">không thấy giới hạn tần suất</text>
+
+<rect x="318" y="130" width="228" height="170" rx="6" fill="#0f172a"/>
+<rect x="318" y="130" width="228" height="170" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="432" y="150" class="t" text-anchor="middle">SSI · iBoard</text>
+<text x="432" y="164" class="s8" text-anchor="middle">company/stock-price</text>
+<text x="328" y="184" class="n">SSI_SP · RAW · VND</text>
+<text x="328" y="197" class="n">581.055 dòng · từ 2000-07-28</text>
+<text x="328" y="214" class="amb">⭐ TRẦN/SÀN — trọng tài duy nhất</text>
+<text x="328" y="227" class="n">+ close thô · GTGD · khối ngoại</text>
+<text x="328" y="246" class="warn">⚠ CHỈ trả lịch sử của sàn ĐANG</text>
+<text x="328" y="258" class="warn">niêm yết ⇒ mã chuyển sàn mất</text>
+<text x="328" y="270" class="warn">sạch lịch sử cũ (ACB 71% · POM 97%)</text>
+<text x="328" y="288" class="s8">O/H/L là số SUY, chỉ đúng ở HOSE</text>
+
+<rect x="566" y="130" width="228" height="170" rx="6" fill="#0f172a"/>
+<rect x="566" y="130" width="228" height="170" rx="6" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="2"/>
+<text x="680" y="150" class="t" text-anchor="middle">SSI · FastConnect</text>
+<text x="680" y="164" class="s8" text-anchor="middle">Market/DailyStockPrice</text>
+<text x="576" y="184" class="new">MỚI 12/08 — LẤP chỗ thủng</text>
+<text x="576" y="199" class="n">source 'SSI' · RAW · VND · Bearer</text>
+<text x="576" y="212" class="n">31 trường · chỉ sâu 2020-02-26</text>
+<text x="576" y="230" class="ok">⭐ O/H/L THÔ THẬT — không suy,</text>
+<text x="576" y="242" class="ok">đúng ở MỌI sàn (kể cả HNX/UPCoM)</text>
+<text x="576" y="260" class="n">lấp 18.755/74.196 dòng thiếu GTGD</text>
+<text x="576" y="276" class="s8">đối chiếu 160 phiên: close lệch 0đ,</text>
+<text x="576" y="288" class="s8">GTGD lệch tối đa 0,282%</text>
+
+<rect x="814" y="130" width="228" height="170" rx="6" fill="#0f172a"/>
+<rect x="814" y="130" width="228" height="170" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="928" y="150" class="t" text-anchor="middle">DNSE · entrade</text>
+<text x="928" y="164" class="s8" text-anchor="middle">chart-api/v2/ohlcs/stock</text>
+<text x="824" y="184" class="n">DNSE · ADJUSTED · kVND</text>
+<text x="824" y="197" class="n">591.941 dòng · từ 2012-03-19</text>
+<rect x="824" y="205" width="126" height="15" rx="3" fill="rgba(30,41,59,0.7)" stroke="#94a3b8" stroke-width="1"/>
+<text x="887" y="216" fill="#cbd5e1" font-size="8" font-weight="700" text-anchor="middle">VAI TRÒ: ĐỐI CHỨNG</text>
+<text x="824" y="234" class="s8">nguồn thay cho 6/197 mã</text>
+<text x="824" y="252" class="new">+ TRỌNG TÀI quy trách nhiệm cột</text>
+<text x="824" y="264" class="new">  cho bar tự mâu thuẫn (mới 12/08)</text>
+<text x="824" y="284" class="warn">trễ 1 ngày · lệch 12× ở đầu chuỗi</text>
+
+<rect x="1062" y="130" width="215" height="170" rx="6" fill="#0f172a"/>
+<rect x="1062" y="130" width="215" height="170" rx="6" fill="rgba(8,51,68,0.4)" stroke="#22d3ee" stroke-width="1.5"/>
+<text x="1169" y="150" class="t" text-anchor="middle">Vietcap (VCI)</text>
+<text x="1072" y="168" class="s8">iq · v1/events · v1/company</text>
+<text x="1072" y="181" class="s8">trading · OHLCChart/gap</text>
+<text x="1072" y="200" class="n">sự kiện 5.089 dòng ✅</text>
+<text x="1072" y="213" class="n">danh mục công ty ✅</text>
+<text x="1072" y="231" class="warn">🔴 GIÁ: 0 dòng — CHƯA NẠP</text>
+<text x="1072" y="245" class="warn">dù phủ từ 2006-01-19</text>
+<text x="1072" y="263" class="s8">Đã thử: có dữ liệu SẠCH đúng</text>
+<text x="1072" y="275" class="s8">những ngày iBoard hỏng 2008–09</text>
+<text x="1072" y="290" class="s8">→ cứu được 172 bar đang NULL</text>
+
+<!-- GATE -->
+<rect x="70" y="328" width="1207" height="44" rx="6" fill="#0f172a"/>
+<rect x="70" y="328" width="1207" height="44" rx="6" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="82" y="345" fill="#fda4af" font-size="9.5" font-weight="700">TẦNG A · CỔNG LÚC BẮT — C-01 · C-02 · C-03 · C-04</text>
+<text x="82" y="362" class="new">C-01 nay CHỈ GHI NHẬN, không xoá cột. Cổng là RÀNG BUỘC trên 4 số: vi phạm chứng minh MỘT số sai, không nói được số nào. Trọng tài (trần/sàn) nằm ở cửa khác nên chỉ tầng đọc mới đủ dữ kiện.</text>
+<text x="1150" y="345" class="s8">rớt cổng → ops.quarantine</text>
+
+<line x1="674" y1="372" x2="674" y2="400" stroke="#fb7185" stroke-width="2" marker-end="url(#ar)"/>
+
+<!-- OBS -->
+<rect x="50" y="405" width="1245" height="132" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="12,4"/>
+<text x="64" y="423" fill="#a78bfa" font-size="9" font-weight="600">② obs — SỔ QUAN SÁT · CHỈ INSERT · Postgres cưỡng chế cấm sửa · ghi CÁI ĐÃ THẤY, không lọc</text>
+
+<rect x="70" y="435" width="290" height="88" rx="6" fill="#0f172a"/>
+<rect x="70" y="435" width="290" height="88" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="215" y="454" class="t" text-anchor="middle">obs.price_daily</text>
+<text x="80" y="471" class="n">4 nguồn · 1.839.953+ dòng · 27 phân mảnh</text>
+<text x="80" y="485" class="s8">PK: source · security_id · trade_date · observed_at</text>
+<text x="80" y="500" class="ok">observed_at (LÚC TA THẤY) ≠ trade_date</text>
+<text x="80" y="514" class="s8">payload_hash khử trùng theo nội dung</text>
+
+<rect x="378" y="435" width="228" height="88" rx="6" fill="#0f172a"/>
+<rect x="378" y="435" width="228" height="88" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="492" y="454" class="t" text-anchor="middle">obs.corp_action</text>
+<text x="388" y="471" class="n">14.028 dòng · 2 nguồn</text>
+<text x="388" y="486" class="s8">VCI 5.089 · DNSE 3.197 (qua view)</text>
+<text x="388" y="502" class="warn">DNSE KHÔNG có tỉ lệ dạng số —</text>
+<text x="388" y="514" class="warn">phải parse từ câu chữ tiếng Việt</text>
+
+<rect x="624" y="435" width="228" height="88" rx="6" fill="#0f172a"/>
+<rect x="624" y="435" width="228" height="88" rx="6" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="738" y="454" class="t" text-anchor="middle">obs.index_daily</text>
+<text x="634" y="471" class="n">17.998 dòng · 5 rổ chỉ số</text>
+<text x="634" y="487" class="s8">NỀN của lịch giao dịch — lịch dẫn</text>
+<text x="634" y="499" class="s8">xuất từ đây, không gõ cứng ngày nghỉ</text>
+<text x="634" y="515" class="s8">2000-07-28 → nay</text>
+
+<rect x="870" y="435" width="407" height="88" rx="6" fill="#0f172a"/>
+<rect x="870" y="435" width="407" height="88" rx="6" fill="rgba(136,19,55,0.25)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="1073" y="453" fill="#fda4af" font-size="9.5" font-weight="700" text-anchor="middle">TẦNG B · CỔNG LÚC GHI — Postgres cưỡng chế</text>
+<text x="880" y="470" class="n">C-05 REVOKE UPDATE, DELETE + ALTER DEFAULT PRIVILEGES</text>
+<text x="880" y="484" class="n">C-06 CHECK price_unit · CHECK price_basis</text>
+<text x="880" y="498" class="n">C-07 UNIQUE khoá + payload_hash · ON CONFLICT DO NOTHING</text>
+<text x="880" y="515" class="s8">obs.index_member — ngoại lệ có chủ ý, không băm (chụp mỗi ngày là cố ý)</text>
+
+<line x1="674" y1="537" x2="674" y2="565" stroke="#a78bfa" stroke-width="2" marker-end="url(#av)"/>
+
+<!-- MARKET -->
+<rect x="50" y="570" width="1245" height="330" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="12,4"/>
+<text x="64" y="588" fill="#34d399" font-size="9" font-weight="600">③ market — TẦNG ĐỌC · đơn vị chuẩn VND · CHỈ 197 mã đang cập nhật · nơi DUY NHẤT được phán xét chất lượng</text>
+
+<rect x="70" y="600" width="590" height="130" rx="6" fill="#0f172a"/>
+<rect x="70" y="600" width="590" height="130" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="2"/>
+<text x="80" y="619" class="t12">market.px_adj_calc</text>
+<text x="250" y="619" class="new">LỚP TÍNH — mới 12/08, mọi phán xét nằm ở đây</text>
+<text x="80" y="638" class="n">Chọn nguồn: ĐẾM Ô, không đếm dòng (obs chỉ-thêm nên nguồn viết lại lịch sử</text>
+<text x="80" y="650" class="n">nhiều thì số DÒNG phình — TNG: DNSE 7.181 dòng nhưng chỉ 3.593 ô)</text>
+<text x="80" y="670" class="amb">THỨ TỰ QUY TRÁCH NHIỆM khi bar tự mâu thuẫn:</text>
+<text x="88" y="684" class="n">1. vượt TRẦN/SÀN → chắc chắn sai, bỏ ngay (số sàn công bố)</text>
+<text x="88" y="697" class="n">2. có NGUỒN THỨ HAI → bỏ đúng cột lệch &gt;1% so nó</text>
+<text x="88" y="710" class="n">3. không có nguồn 2 → bỏ high/low (ưu tiên đo được)</text>
+<text x="88" y="724" class="s8">Phải theo TỪNG BAR: nhóm chung high/low sai, nhưng 2021-04/05 thì open mới sai</text>
+
+<rect x="678" y="600" width="599" height="130" rx="6" fill="#0f172a"/>
+<rect x="678" y="600" width="599" height="130" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+<text x="688" y="619" class="t12">market.px_adj</text>
+<text x="810" y="619" class="new">nay là BẢNG, không còn là view — làm mới ở bước 7</text>
+<text x="688" y="638" class="n">621.941 dòng · 197 mã</text>
+<text x="688" y="656" class="ok">close 100,0%   volume 100,0%   open 99,7%   low 98,8%   high 98,7%</text>
+<text x="688" y="672" class="new">volume_adj 88,1%   total_value 88,1%      ← hai cột MỚI</text>
+<text x="688" y="691" class="warn">Trước 12/08: close × volume sai 37,0% so số đo</text>
+<text x="688" y="704" class="ok">Nay: close × volume_adj sai 0,59% · 99,1% dòng trong sai số 10%</text>
+<text x="688" y="722" class="s8">volume_adj = volume × (giá thô / giá điều chỉnh) — giá điều chỉnh mà volume thì không</text>
+
+<rect x="70" y="740" width="590" height="82" rx="6" fill="#0f172a"/>
+<rect x="70" y="740" width="590" height="82" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+<text x="80" y="759" class="t12">market.px_adj_as_of(ngày)</text>
+<text x="320" y="759" class="new">viết lại 12/08 — bằng MỘT phép chia</text>
+<text x="80" y="777" class="n">adj_as_of(T)(d) = adj_hôm_nay(d) ÷ S(T)      với  S(T) = adj(T) / thô(T)</text>
+<text x="80" y="794" class="warn">Bản cũ: lọc observed_at ≤ as_of ⇒ TRẢ RỖNG với mọi mốc trước 2026-08-01, không báo lỗi</text>
+<text x="80" y="810" class="ok">Nay: chạy tới năm 2000 · 4,0s thay vì &gt;400s · sai số làm tròn ~0,03%</text>
+
+<rect x="678" y="740" width="599" height="82" rx="6" fill="#0f172a"/>
+<rect x="678" y="740" width="599" height="82" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+<text x="688" y="759" class="t12">market.px_raw</text>
+<text x="800" y="759" class="new">nay đọc HAI cửa SSI — ưu tiên SSI_SP, FastConnect lấp chỗ thủng</text>
+<text x="688" y="777" class="n">giá THÔ, VND · trần/sàn · GTGD · khối ngoại · thoả thuận · số lệnh</text>
+<text x="688" y="794" class="warn">O/H/L thô: HOSE 98,5% · HNX 0% · UPCoM 0% (phép suy hỏng ngoài HOSE)</text>
+<text x="688" y="810" class="new">FastConnect cho O/H/L thô THẬT ở mọi sàn ⇒ HNX/UPCoM sẽ có, từ 2020-02-26</text>
+
+<rect x="70" y="832" width="590" height="56" rx="6" fill="#0f172a"/>
+<rect x="70" y="832" width="590" height="56" rx="6" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/>
+<text x="80" y="851" class="t">market.factor_exchange · ca_verified · trading_calendar · index_member</text>
+<text x="80" y="868" class="n">hệ số SÀN công bố = (trần+sàn)/2 ÷ close phiên trước — ĐÁP ÁN, không do ta tính</text>
+<text x="80" y="882" class="warn">ca_verified: chỉ 2.799/3.344 ex-date (83,7%) kiểm chứng được</text>
+
+<rect x="678" y="832" width="599" height="56" rx="6" fill="#0f172a"/>
+<rect x="678" y="832" width="599" height="56" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="688" y="851" fill="#fde68a" font-size="10" font-weight="700">QUY TẮC TẦNG ĐỌC — mỗi cái chữa một lỗi đã xảy ra thật</text>
+<text x="688" y="868" class="n">① khoanh nguồn ② tách quan sát khỏi suy luận ③ chỉ mã đang cập nhật</text>
+<text x="688" y="882" class="new">④ giá trị không đáng tin ⇒ NULL, không giữ kèm cờ — "thiếu còn hơn sai"</text>
+
+<!-- CONSUMERS -->
+<line x1="674" y1="900" x2="674" y2="925" stroke="#34d399" stroke-width="2" marker-end="url(#ae)"/>
+<rect x="70" y="930" width="1207" height="46" rx="6" fill="#0f172a"/>
+<rect x="70" y="930" width="1207" height="46" rx="6" fill="rgba(30,41,59,0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="82" y="949" class="t">④ NGƯỜI DÙNG — backtest · nghiên cứu alpha · Council · webapp</text>
+<text x="82" y="966" class="n">Chỉ báo bất biến theo thang giá (RSI · MA · MACD · Bollinger · Ichimoku) an toàn. Rule theo MỨC GIÁ và theo THANH KHOẢN nay cũng đúng nhờ total_value + volume_adj.</text>
+
+<!-- ══════════ CỘT PHẢI: LUỒNG CHẠY ══════════ -->
+<rect x="1320" y="100" width="740" height="1180" rx="12" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="12,4"/>
+<text x="1334" y="118" fill="#60a5fa" font-size="10" font-weight="700">LUỒNG CHẠY HẰNG NGÀY — Task Scheduler `PRJQI_DailyUpdate`, 17:30 ICT</text>
+<text x="1334" y="134" class="new">Từ 12/08: 8 bước → 9 bước. Bước 7 mới, hai bước cuối dịch số.</text>
+
+<rect x="1334" y="146" width="712" height="60" rx="6" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="1"/>
+<text x="1344" y="164" class="t">1 · daily_update.py</text>
+<text x="1470" y="164" class="s8">giá NGUỒN CHÍNH — không tham số, tự đọc vai trò từ DB</text>
+<text x="1344" y="181" class="n">so CHÍNH DỮ LIỆU để phát hiện nguồn chia lại lịch sử (ngưỡng 0,2%) ⇒ nạp lại TOÀN BỘ mã đó</text>
+<text x="1344" y="196" class="s8">không hỏi bảng sự kiện — bảng đó sót thật. Đã nổ: PLX 2.318 phiên · VHM 2.053 phiên</text>
+
+<rect x="1334" y="212" width="712" height="42" rx="6" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1"/>
+<text x="1344" y="230" class="t">2 · daily_update.py --source DNSE</text>
+<text x="1620" y="230" class="s8">giá ĐỐI CHỨNG — CÙNG file, CÙNG mọi cổng</text>
+<text x="1344" y="246" class="s8">bảng NGUON{} khai url/params/bóc từng nguồn ⇒ thêm nguồn = thêm 1 mục, không sửa luồng</text>
+
+<rect x="1334" y="260" width="712" height="42" rx="6" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1"/>
+<text x="1344" y="278" class="t">3 · load_ssi_sp.py --window</text>
+<text x="1580" y="278" class="s8">giá THÔ + trần/sàn — nguồn duy nhất có trần/sàn</text>
+<text x="1344" y="294" class="s8">pageSize trần cứng 250 · suy raw O/H/L = adj_x ÷ (adj_close/raw_close), đúng 570/570 ở HOSE</text>
+
+<rect x="1334" y="308" width="712" height="42" rx="6" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1"/>
+<text x="1344" y="326" class="t">4 · load_index.py</text>
+<text x="1490" y="326" class="s8">5 rổ chỉ số — chạy TRƯỚC vì lịch giao dịch dẫn xuất từ đây</text>
+<text x="1344" y="342" class="s8">lỗi B10 của ver 1: lịch gõ cứng ngày nghỉ, vỡ 2 lần. Ver 2 dẫn xuất nên không hết hạn</text>
+
+<rect x="1334" y="356" width="712" height="52" rx="6" fill="rgba(120,53,15,0.28)" stroke="#fbbf24" stroke-width="1"/>
+<text x="1344" y="374" class="t">5 · load_index_member.py</text>
+<text x="1560" y="374" class="s8">ẢNH CHỤP thành phần rổ · SSI FastConnect</text>
+<text x="1344" y="390" class="amb">không API nào cho point-in-time — ngày nào không chụp là MẤT VĨNH VIỄN</text>
+<text x="1344" y="404" class="warn">⚠ TASK-008: loader bỏ 178 mã ngoài meta.securities ⇒ VNALLSHARE chỉ 137/315</text>
+
+<rect x="1334" y="414" width="712" height="42" rx="6" fill="rgba(8,51,68,0.35)" stroke="#22d3ee" stroke-width="1"/>
+<text x="1344" y="432" class="t">6 · daily_events.py</text>
+<text x="1500" y="432" class="s8">sự kiện 2 nguồn · C-04 phân trang · C-17 đối chiếu chéo</text>
+<text x="1344" y="448" class="s8">C-17 phải so TẬP với TẬP, cấm .first() — cài sai từng sinh 116 báo động giả</text>
+
+<rect x="1334" y="462" width="712" height="118" rx="6" fill="rgba(76,29,149,0.32)" stroke="#a78bfa" stroke-width="2"/>
+<text x="1344" y="481" class="t12">7 · lam_moi_tang_doc.py</text>
+<text x="1530" y="481" class="new">BƯỚC MỚI 12/08</text>
+<text x="1344" y="500" class="n">a) CALL market.lam_moi_px_adj() — dựng lại BẢNG px_adj từ lớp tính, trong MỘT giao dịch</text>
+<text x="1344" y="513" class="s8">   người đọc thấy bảng cũ trọn vẹn hoặc bảng mới trọn vẹn, không bao giờ thấy rỗng giữa chừng</text>
+<text x="1344" y="533" class="n">b) C-19 · CẮT NGANG THEO NGÀY — lớp lỗi mà 18 cổng cũ đều MÙ</text>
+<text x="1344" y="546" class="s8">   mọi cổng cũ nhìn MỘT DÒNG; không cổng nào hỏi được "hôm nay bao nhiêu mã cùng hỏng"</text>
+<text x="1344" y="560" class="warn">   2009-09-16: 38/53 mã hỏng (71,7% vs nền 3,8%) · 2021-04-16: 97/185 · 2021-05-10: 73/184</text>
+<text x="1344" y="574" class="amb">   ngưỡng so NỀN CỤC BỘ chứ không tuyệt đối: tuyệt đối cho 422 ngày (nhiễu), so nền cho 13</text>
+
+<rect x="1334" y="586" width="712" height="128" rx="6" fill="rgba(136,19,55,0.32)" stroke="#fb7185" stroke-width="2"/>
+<text x="1344" y="605" class="t12">8 · test_bat_bien.py</text>
+<text x="1500" y="605" class="s8">13 BẤT BIẾN CẤU TRÚC — thứ chặn khuôn lỗi lặp lại</text>
+<text x="1344" y="622" class="s8">Khác test_spec_vs_code: file kia hỏi "đã cài chưa", file này hỏi "đã áp cho MỌI chỗ nó chạm chưa"</text>
+<text x="1344" y="640" class="n">I1 khử trùng theo nội dung · I2 ngưỡng tuổi từng nguồn · I3 mọi nguồn trong batch</text>
+<text x="1344" y="653" class="n">I4 khai đủ vendor/host/path · I5 obs cấm sửa · I6 truy vấn phải lọc theo source</text>
+<text x="1344" y="666" class="n">I7 bảng và hàm chọn cùng nguồn · I8 mọi job ghi run_ledger · I9 nguồn CHÍNH khớp thực tế</text>
+<text x="1344" y="679" class="n">I10 batch không gán cứng tên nguồn</text>
+<text x="1344" y="695" class="new">I11 tầng đọc chỉ trả mã đang cập nhật  ·  I12 bảng px_adj không cũ hơn obs</text>
+<text x="1344" y="708" class="new">I13 close không bao giờ NULL — ba cái này thêm ngày 12/08</text>
+
+<rect x="1334" y="720" width="712" height="42" rx="6" fill="rgba(120,53,15,0.28)" stroke="#fbbf24" stroke-width="1"/>
+<text x="1344" y="738" class="t">9 · status.py --ghi</text>
+<text x="1480" y="738" class="s8">dead-man 36h · tuổi TỪNG nguồn · tồn cách ly → mã thoát 0 sạch / 2 có ĐỎ</text>
+<text x="1344" y="754" class="s8">trả lời được kể cả khi mọi job đã chết im lặng nhiều ngày</text>
+
+<!-- KẾT QUẢ -->
+<rect x="1334" y="778" width="712" height="150" rx="6" fill="#0f172a"/>
+<rect x="1334" y="778" width="712" height="150" rx="6" fill="rgba(6,78,59,0.35)" stroke="#34d399" stroke-width="1.5"/>
+<text x="1690" y="798" class="t" text-anchor="middle">BẢY THAY ĐỔI NGÀY 12/08 — trước và sau</text>
+<text x="1344" y="818" class="n">giá trị giao dịch sai</text><text x="1700" y="818" class="warn">37,0%</text><text x="1780" y="818" class="ok">→ 0,59%</text>
+<text x="1344" y="834" class="n">px_adj_as_of() với mốc quá khứ</text><text x="1700" y="834" class="warn">RỖNG</text><text x="1780" y="834" class="ok">→ chạy tới 2000</text>
+<text x="1344" y="850" class="n">px_adj_as_of() tốc độ</text><text x="1700" y="850" class="warn">&gt;400s</text><text x="1780" y="850" class="ok">→ 4,0s</text>
+<text x="1344" y="866" class="n">mã rơi sang DNSE oan</text><text x="1700" y="866" class="warn">14</text><text x="1780" y="866" class="ok">→ 6</text>
+<text x="1344" y="882" class="n">cổng C-01</text><text x="1700" y="882" class="warn">xoá nhầm cột</text><text x="1780" y="882" class="ok">→ quy trách nhiệm từng bar</text>
+<text x="1344" y="898" class="n">mã đóng băng phơi ở tầng đọc</text><text x="1700" y="898" class="warn">7</text><text x="1780" y="898" class="ok">→ 0 (lọc, bật lại được)</text>
+<text x="1344" y="914" class="n">Postgres nghe trên</text><text x="1700" y="914" class="warn">* (mọi máy)</text><text x="1780" y="914" class="ok">→ localhost</text>
+
+<!-- CÒN TỒN -->
+<rect x="1334" y="944" width="712" height="180" rx="6" fill="#0f172a"/>
+<rect x="1334" y="944" width="712" height="180" rx="6" fill="rgba(136,19,55,0.22)" stroke="#fb7185" stroke-width="1.5"/>
+<text x="1690" y="964" fill="#fecdd3" font-size="11" font-weight="700" text-anchor="middle">CÒN TỒN — không mục nào cho ra SỐ SAI, đều là THIẾU dữ liệu</text>
+<text x="1344" y="984" class="warn">🔴 Vietcap chưa nạp giá</text>
+<text x="1560" y="984" class="n">0 dòng, dù phủ từ 2006 và có dữ liệu sạch đúng ngày iBoard hỏng</text>
+<text x="1344" y="1000" class="s8">      cứu được 172 bar 2008–09 · cấp trọng tài cho 2006–2012 · lưu lại cơ sở quyết định kiến trúc</text>
+<text x="1344" y="1020" class="warn">🟡 GTGD thiếu 11,9%</text>
+<text x="1560" y="1020" class="n">74.196 dòng — cửa stock-price không trả lịch sử sàn cũ</text>
+<text x="1344" y="1036" class="s8">      FastConnect đang lấp 18.755 (25,3%) · 55.441 dòng trước 2020-02-26 thì KHÔNG nguồn nào có</text>
+<text x="1344" y="1056" class="warn">🟡 O/H/L thô</text>
+<text x="1560" y="1056" class="n">HNX 0% · UPCoM 0% — sẽ có một phần nhờ FastConnect</text>
+<text x="1344" y="1076" class="warn">🟡 hệ số sự kiện</text>
+<text x="1560" y="1076" class="n">chỉ 83,7% kiểm chứng được — gốc của C-13 đỏ vĩnh viễn</text>
+<text x="1344" y="1096" class="warn">🟡 TASK-008 · QĐ-4</text>
+<text x="1560" y="1096" class="n">ảnh chụp rổ bỏ 178 mã · lịch sử đảo rổ trước 2026-08-07 chưa cào</text>
+<text x="1344" y="1114" class="s8">🟡 hai cửa ma còn trong vendor_door (SSI foreign_flow · VCI gap-chart) — chưa có bằng chứng từng chạy</text>
+
+<!-- BÀI HỌC -->
+<rect x="1334" y="1140" width="712" height="128" rx="6" fill="#0f172a"/>
+<rect x="1334" y="1140" width="712" height="128" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="2"/>
+<text x="1690" y="1161" fill="#fde68a" font-size="11" font-weight="700" text-anchor="middle">BÀI HỌC RÚT RA NGÀY 12/08</text>
+<text x="1344" y="1182" class="amb">Phép kiểm nhất quán là MÁY DÒ, không phải MÁY CHẨN ĐOÁN.</text>
+<text x="1344" y="1198" class="n">Ràng buộc trên N số: vi phạm chứng minh MỘT số sai — nó không nói được số nào.</text>
+<text x="1344" y="1214" class="n">Muốn quy trách nhiệm phải có một giá trị ĐỘC LẬP chỉ đích danh.</text>
+<text x="1344" y="1234" class="warn">Hai lần sửa sai hôm nay đều vì đọc HÌNH DẠNG phép kiểm như thể nó nêu tên thủ phạm:</text>
+<text x="1344" y="1248" class="s8">"low ≤ open ≤ high trượt" ⇒ đổ cho open. Sai — cùng phép so đó cũng trượt khi high/low sai.</text>
+<text x="1344" y="1262" class="ok">Luật mới: cổng chỉ được bỏ CỘT khi có giá trị độc lập chỉ đích danh cột đó.</text>
+
+<!-- CHÚ GIẢI -->
+<rect x="50" y="994" width="1245" height="76" rx="8" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+<text x="64" y="1014" fill="#e2e8f0" font-size="10" font-weight="700">CHÚ GIẢI</text>
+<rect x="150" y="1005" width="14" height="11" rx="2" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/><text x="172" y="1015" class="s">nguồn CHÍNH</text>
+<rect x="300" y="1005" width="14" height="11" rx="2" fill="rgba(76,29,149,0.35)" stroke="#a78bfa" stroke-width="1.5"/><text x="322" y="1015" class="s">obs · lớp mới thêm 12/08</text>
+<rect x="530" y="1005" width="14" height="11" rx="2" fill="rgba(6,78,59,0.4)" stroke="#34d399" stroke-width="1.5"/><text x="552" y="1015" class="s">tầng đọc market</text>
+<rect x="700" y="1005" width="14" height="11" rx="2" fill="rgba(136,19,55,0.35)" stroke="#fb7185" stroke-width="1.5"/><text x="722" y="1015" class="s">cổng · phép kiểm · chỗ đang tồn</text>
+<rect x="960" y="1005" width="14" height="11" rx="2" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/><text x="982" y="1015" class="s">quy tắc bắt buộc</text>
+<text x="1120" y="1015" class="new">chữ tím = mới 12/08</text>
+<text x="64" y="1036" class="s8">Mã C-xx tra ở: C:\Users\OS\Lucius\Projects\PRJ Quantitative Investment\2. Data design\main\BANG_TRA_MA_KIEM.md   ·   Bất biến I1–I13 khai trong 3. Build\code\test_bat_bien.py</text>
+<text x="64" y="1050" class="s8">Mã nguồn: C:\Users\OS\Lucius\Projects\PRJ Quantitative Investment\3. Build\code\   ·   Schema 15 file 010→150: C:\Users\OS\Lucius\Projects\PRJ Quantitative Investment\3. Build\schema\</text>
+<text x="64" y="1064" class="s8">Thay cho db-va-luong-chay-v2 (09/08). Số liệu đo từ DB thật ngày 2026-08-12 sau khi áp toàn bộ thay đổi.</text>
+
+<text x="50" y="1295" class="s8">PRJ Quantitative Investment · db-va-luong-chay-v3 · 2026-08-12</text>
+</svg>

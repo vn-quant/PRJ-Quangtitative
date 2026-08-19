@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 900">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'SF Mono', 'Segoe UI', sans-serif; }
+    .t{fill:#fff;font-size:11px;font-weight:600}
+    .s{fill:#cbd5e1;font-size:8.5px}
+    .g{fill:#94a3b8;font-size:8px}
+    .h{fill:#e2e8f0;font-size:11px;font-weight:700}
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/></pattern>
+    <marker id="a" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/></marker>
+    <marker id="av" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/></marker>
+    <marker id="ag" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/></marker>
+    <marker id="ac" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#0f172a"/><rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <text x="30" y="34" fill="#fff" font-size="16" font-weight="700">Luồng chạy hằng ngày — ver 2</text>
+  <text x="30" y="52" class="s">Một chain duy nhất, 16:15 ICT. Không có bước migration ⇒ không có cơ chế ghi đè. Views tự hiện hành.</text>
+
+  <!-- 0 -->
+  <rect x="40" y="76" width="1400" height="46" rx="6" fill="#0f172a"/><rect x="40" y="76" width="1400" height="46" rx="6" fill="rgba(120,53,15,0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="60" y="96" class="t">0 · ĐỌC KHAI BÁO</text>
+  <text x="60" y="112" class="s">meta.universe (204 mã active) · meta.source_contract (đơn vị + cơ sở giá theo từng nguồn) — job KHÔNG hardcode gì</text>
+  <text x="1420" y="103" class="g" text-anchor="end">n_expected := 204</text>
+  <line x1="740" y1="122" x2="740" y2="148" stroke="#fbbf24" stroke-width="1.6" marker-end="url(#a)"/>
+
+  <!-- 1 fetch -->
+  <rect x="40" y="150" width="1400" height="196" rx="10" fill="none" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="8,4"/>
+  <text x="58" y="170" class="h">1 · FETCH — mỗi nguồn MỘT ĐƯỜNG RIÊNG, chạy song song</text>
+  <text x="1422" y="170" class="g" text-anchor="end">throttle + backoff · KHÔNG nhảy nguồn khi 429</text>
+
+  <rect x="58" y="182" width="252" height="70" rx="5" fill="#0f172a"/><rect x="58" y="182" width="252" height="70" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="184" y="201" class="t" text-anchor="middle">SSI · DailyStockPrice</text>
+  <text x="184" y="216" class="s" text-anchor="middle">204 mã · 31 trường</text>
+  <text x="184" y="229" class="s" text-anchor="middle">giá THÔ + khối ngoại + trần/sàn</text>
+  <text x="184" y="245" class="g" text-anchor="middle">~4,5 phút (1 lời gọi/giây)</text>
+
+  <rect x="326" y="182" width="252" height="70" rx="5" fill="#0f172a"/><rect x="326" y="182" width="252" height="70" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="452" y="201" class="t" text-anchor="middle">SSI · DailyIndex</text>
+  <text x="452" y="216" class="s" text-anchor="middle">~5 chỉ số · 21 trường</text>
+  <text x="452" y="229" class="s" text-anchor="middle">+ độ rộng thị trường</text>
+  <text x="452" y="245" class="g" text-anchor="middle">mỏ neo lịch giao dịch</text>
+
+  <rect x="594" y="182" width="252" height="70" rx="5" fill="#0f172a"/><rect x="594" y="182" width="252" height="70" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="720" y="201" class="t" text-anchor="middle">VCI IQ · events (delta)</text>
+  <text x="720" y="216" class="s" text-anchor="middle">eventCode=DIV,ISS + phân trang</text>
+  <text x="720" y="229" class="s" text-anchor="middle">+ insider · news</text>
+  <text x="720" y="245" class="g" text-anchor="middle">KHÔNG gọi mặc định (E0014)</text>
+
+  <rect x="862" y="182" width="252" height="70" rx="5" fill="#0f172a"/><rect x="862" y="182" width="252" height="70" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="988" y="201" class="t" text-anchor="middle">SBV · Yahoo</text>
+  <text x="988" y="216" class="s" text-anchor="middle">lãi suất điều hành + liên NH</text>
+  <text x="988" y="229" class="s" text-anchor="middle">15 mã hàng hoá</text>
+  <text x="988" y="245" class="g" text-anchor="middle">SBV chỉ có ảnh hiện tại</text>
+
+  <rect x="1130" y="182" width="292" height="70" rx="5" fill="#0f172a"/><rect x="1130" y="182" width="292" height="70" rx="5" fill="rgba(30,41,59,0.6)" stroke="#94a3b8" stroke-width="1.3"/>
+  <text x="1276" y="201" class="t" text-anchor="middle">SSI · IntradayOhlc</text>
+  <text x="1276" y="216" class="s" text-anchor="middle">204 mã · sau giờ đóng cửa</text>
+  <text x="1276" y="229" class="s" text-anchor="middle">CHỈ append hôm nay</text>
+  <text x="1276" y="245" class="g" text-anchor="middle">cấm refetch quá khứ</text>
+
+  <rect x="58" y="264" width="1364" height="66" rx="5" fill="rgba(136,19,55,0.22)" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="740" y="284" class="t" text-anchor="middle" fill="#fb7185">GATE LÚC BẮT — chặn dòng bẩn TRƯỚC khi vào DB</text>
+  <text x="740" y="300" class="s" text-anchor="middle">ohlc_bad_mask() theo TỪNG DÒNG (low ≤ open,close ≤ high) · scale-anchor vs close hôm trước, nới biên nếu là ex-date · NULL/âm</text>
+  <text x="740" y="317" class="g" text-anchor="middle">Dòng hỏng → quarantine + sang dòng kế, KHÔNG bỏ cả mã · ca "khoá trần cả phiên o=h=l=c" là HỢP LỆ, không được bắt nhầm</text>
+
+  <line x1="740" y1="346" x2="740" y2="374" stroke="#a78bfa" stroke-width="2" marker-end="url(#av)"/>
+
+  <!-- 2 write -->
+  <rect x="40" y="376" width="1400" height="118" rx="10" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="396" class="h" fill="#a78bfa">2 · GHI VÀO obs.* — chỉ INSERT, không đường nào khác</text>
+
+  <rect x="58" y="408" width="430" height="70" rx="5" fill="#0f172a"/><rect x="58" y="408" width="430" height="70" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="273" y="428" class="t" text-anchor="middle">INSERT ... ON CONFLICT DO NOTHING</text>
+  <text x="273" y="445" class="s" text-anchor="middle">unique (source, symbol, trade_date, payload_hash)</text>
+  <text x="273" y="459" class="s" text-anchor="middle">nguồn nói y hệt lần trước ⇒ 0 dòng mới</text>
+  <text x="273" y="472" class="g" text-anchor="middle">bảng phình theo LƯỢNG THÔNG TIN, không theo số lần chạy</text>
+
+  <rect x="504" y="408" width="430" height="70" rx="5" fill="#0f172a"/><rect x="504" y="408" width="430" height="70" rx="5" fill="rgba(76,29,149,0.4)" stroke="#a78bfa" stroke-width="1.3"/>
+  <text x="719" y="428" class="t" text-anchor="middle">Mỗi dòng mang observed_at + run_id</text>
+  <text x="719" y="445" class="s" text-anchor="middle">price_unit / price_basis lấy từ meta.source_contract</text>
+  <text x="719" y="459" class="s" text-anchor="middle">giá trị lưu NGUYÊN BẢN, không quy đổi</text>
+  <text x="719" y="472" class="g" text-anchor="middle">DNSE vẫn là nghìn đồng — đổi lúc ĐỌC</text>
+
+  <rect x="950" y="408" width="472" height="70" rx="5" fill="#0f172a"/><rect x="950" y="408" width="472" height="70" rx="5" fill="rgba(136,19,55,0.4)" stroke="#fb7185" stroke-width="1.3"/>
+  <text x="1186" y="428" class="t" text-anchor="middle">ops.run_ledger — mọi job ghi một dòng</text>
+  <text x="1186" y="445" class="s" text-anchor="middle">status ∈ OK | EMPTY | FAIL   ·   EMPTY khi kỳ vọng có data = LỖI</text>
+  <text x="1186" y="459" class="s" text-anchor="middle">n_expected vs n_seen vs n_inserted</text>
+  <text x="1186" y="472" class="g" text-anchor="middle">chênh expected↔seen = co rổ trong im lặng → tự đỏ</text>
+
+  <line x1="740" y1="494" x2="740" y2="522" stroke="#34d399" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="756" y="514" class="g" fill="#34d399">views tự hiện hành — KHÔNG có bước rebuild, KHÔNG có migration</text>
+
+  <!-- 3 -->
+  <rect x="40" y="524" width="1400" height="86" rx="10" fill="none" stroke="#34d399" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="544" class="h" fill="#34d399">3 · market.* KHÔNG cần làm gì — là VIEW</text>
+  <text x="58" y="566" class="s">px_raw · ca · px_adj(as_of) · index_daily · breadth · foreign_flow · px_intraday · meta.trading_calendar</text>
+  <text x="58" y="584" class="g">Đây là chỗ ver 1 có `200_migrate_from_landing.sql` — bước đã xoá sạch backfill SSI 5 đêm liền. Ver 2 không có bước này nên không có lớp lỗi đó.</text>
+  <text x="58" y="600" class="g">Sự kiện doanh nghiệp mới nạp ở bước 1 ⇒ px_adj đổi NGAY, px_raw KHÔNG đổi. Không rebuild, không nguy cơ double-adjust.</text>
+
+  <line x1="740" y1="610" x2="740" y2="638" stroke="#22d3ee" stroke-width="2" marker-end="url(#ac)"/>
+
+  <!-- 4 checks -->
+  <rect x="40" y="640" width="1400" height="86" rx="10" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="58" y="660" class="h" fill="#22d3ee">4 · CHECKS — chi tiết ở sơ đồ `daily-check-v1`</text>
+  <text x="58" y="682" class="s">T1 freshness + continuity + universe invariant (SQL thuần, 0 lời gọi API) · T2 đối chiếu nguồn ngoài 1/7 universe xoay vòng · cross-check raw ↔ adj ngoài ex-date</text>
+  <text x="58" y="700" class="g">Toàn bộ T1+T2 đo được ở ver 1: 22 giây. Exit code = chất lượng dữ liệu, không phải "script có chạy xong không".</text>
+  <text x="58" y="716" class="g">T3 (check_price_basis --mode full) chạy hằng tuần, không nằm trong chain ngày.</text>
+
+  <line x1="740" y1="726" x2="740" y2="754" stroke="#fb7185" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- 5 -->
+  <rect x="40" y="756" width="1400" height="76" rx="10" fill="#0f172a"/><rect x="40" y="756" width="1400" height="76" rx="10" fill="rgba(136,19,55,0.3)" stroke="#fb7185" stroke-width="1.5"/>
+  <text x="58" y="777" class="h" fill="#fb7185">5 · ESCALATION — ops.STATUS</text>
+  <text x="58" y="797" class="s">Một dòng verdict mỗi lần chạy · run đỏ = dòng đỏ đầu file · counter: một mã/series đỏ N ngày LIÊN TIẾP thì nâng mức, không cảnh báo một lần rồi trôi</text>
+  <text x="58" y="815" class="s">Dead-man: không có run nào trong &gt; 36h = cờ riêng. "Không chạy" nguy hiểm hơn "chạy lỗi mà im".</text>
+  <text x="1422" y="797" class="g" text-anchor="end">Bài học ver 1: LastResult=2 báo đỏ nhiều ngày</text>
+  <text x="1422" y="813" class="g" text-anchor="end">trong ô Task Scheduler — không ai mở ra xem</text>
+
+  <text x="40" y="862" class="g">Nguyên tắc xuyên suốt: "lấy theo ngày ⇒ bắt buộc chạy cuối ngày" — áp cho MỌI dataset và MỌI mã. Không còn chế độ "--mode all lúc nào đó chạy tay".</text>
+  <text x="40" y="880" class="g">Trước mỗi phép đo trên dữ liệu, luôn hỏi: "có job nào chạy SAU thời điểm này không?" — ops.run_ledger trả lời được câu đó, ver 1 thì không.</text>
+</svg>
