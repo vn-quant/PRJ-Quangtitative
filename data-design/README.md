@@ -9,6 +9,7 @@ Quá trình nằm ở `..\archive\` — đọc khi cần biết **vì sao** mộ
 
 | Cần biết | Mở |
 |---|---|
+| **Bắt đầu từ đâu** — kho có gì, hỏi thế nào, hằng ngày chạy gì, hỏng thì làm sao | **`RUNBOOK.md`** |
 | **Giá ngày dùng thế nào** — định nghĩa raw/adj, công thức, gọi view nào, 18 phép kiểm, xử lý lỗi | `OHLCV.md` |
 | **Thiết kế bảng** — tầng `obs` / `market` / `meta` / `ops`, sơ đồ, thứ tự thi công | `DB_DESIGN.md` |
 | **Dữ liệu nào cần lấy** — 56 mục, 8 nhóm, danh sách mã | `DATA_REQUIREMENTS.md` |

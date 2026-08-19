@@ -20,6 +20,8 @@ PRJ-Quangtitative/
 │
 ├── data-design/           tài liệu kỹ thuật DB + nguồn dữ liệu        [ghi đè]
 │   ├── README.md          bảng tra cứu của thư mục
+│   ├── RUNBOOK.md         ★ bắt đầu từ đây — kho có gì, hỏi thế nào,
+│   │                        chạy gì mỗi ngày, hỏng thì làm sao
 │   ├── DB_DESIGN.md       thiết kế bảng: obs / market / meta / ops
 │   ├── DATA_REQUIREMENTS.md   dữ liệu nào cần lấy — 56 mục, 8 nhóm
 │   ├── DATA_SOURCE_MAP.md     map từng mục sang nguồn
